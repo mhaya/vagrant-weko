@@ -1,4 +1,14 @@
 <?php
+// --------------------------------------------------------------------
+//
+// wekoDB2TSV.php
+//
+// Copyright (c) 2012 Masaharu HAYASHI 
+//
+// This program is licensed under a Creative Commons BSD Licence
+// http://creativecommons.org/licenses/BSD/
+//
+// --------------------------------------------------------------------
 ini_set('memory_limit', '512M');
 
 $host='';
@@ -8,16 +18,17 @@ $dbname='';
 $tbl_prefix='';
 $item_type_id=1;
 
+//check the parameters.
 if($argc==7){
 	$host=$argv[1];
-$user=$argv[2];
-$pass=$argv[3];
-$dbname=$argv[4];
-$tbl_prefix=$argv[5];
-$item_type_id=$argv[6];
+    $user=$argv[2];
+    $pass=$argv[3];
+    $dbname=$argv[4];
+    $tbl_prefix=$argv[5];
+    $item_type_id=$argv[6];
 }else{
-print "usage: ".$argv[0]." [host] [user] [pass] [dbname] [tbl_prefix] [item_type_id]\n";
-exit();
+    print "usage: ".$argv[0]." [host] [user] [pass] [dbname] [tbl_prefix] [item_type_id]\n";
+    exit();
 }
 
 $item_type_name='';

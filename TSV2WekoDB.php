@@ -1,4 +1,15 @@
 <?php
+// --------------------------------------------------------------------
+//
+// TSV2WekoDB.php
+//
+// Copyright (c) 2012 Masaharu Hayashi
+//
+// This program is licensed under a Creative Commons BSD Licence
+// http://creativecommons.org/licenses/BSD/
+//
+// --------------------------------------------------------------------
+
 $ini_array = parse_ini_file("config.ini", true);
 
 $host=$ini_array['db']['host'];
@@ -31,12 +42,11 @@ if(!$db_selected){
 
 getAttribute($attr,$header,$tbl_prefix,$item_type_id);
 
-genSQL($attr,$record,$tbl_prefix,$item_type_id);
+generateQuery($attr,$record,$tbl_prefix,$item_type_id);
 
 mysql_close($link);
 
-function genSQL($attr,$record,$tbl_prefix,$item_type_id){
-    //select * from nc2db_repository_item_attr where item_id=11763 and attribute_id=23;
+function generateQuery($attr,$record,$tbl_prefix,$item_type_id){
     foreach($record as $row){
         // magic number
         $item_type_name=$row[0];
@@ -44,13 +54,6 @@ function genSQL($attr,$record,$tbl_prefix,$item_type_id){
         $item_no=$row[2];
         $item_title=$row[3];
         $item_title_english=$row[4];
-
-        
-        //print($item_type_name."\n");
-        //print($item_id."\n");
-        //print($item_no."\n");
-        //print($item_title."\n");
-        //print($item_title_english."\n");
 
         $sql="select attribute_id,attribute_no,attribute_value from ".$tbl_prefix."_repository_item_attr where item_id=".$item_id;
 

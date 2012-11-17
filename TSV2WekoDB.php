@@ -13,7 +13,7 @@ $path="";
 if($argc==2){
     $path=$argv[1];
 }else{
-    print("USE");
+    print("Usage: ".$argv[0]." tsvfile \n");
     exit();
 }
 readCSV($path,"\t",$record,$header);
@@ -52,7 +52,22 @@ function genSQL($attr,$record,$tbl_prefix,$item_type_id){
         //print($item_title."\n");
         //print($item_title_english."\n");
 
-        //print_r($row);
+        $sql="select attribute_id,attribute_no,attribute_value from ".$tbl_prefix."_repository_item_attr where item_id=".$item_id;
+
+        $result2 =mysql_query($sql);
+        if(!$result2){
+            die('fail query.'.mysql_error());
+        }
+        
+        // get old value
+        $old=array();
+        while ($row2 = mysql_fetch_assoc($result2)) {
+            $id=$row2['attribute_id'];
+            $no=$row2['attribute_no'];
+            $val=$row2['attribute_value'];
+            $old[$id][$no]=$val;
+        }
+
         $attr_no=array();
         for($i=5;$i<count($row);$i++){
             if($attr[$i]!=-1){
@@ -64,8 +79,17 @@ function genSQL($attr,$record,$tbl_prefix,$item_type_id){
                 }else{
                     $attr_no[$attribute_id]=1;
                 }
-                $sql="select * from ".$tbl_prefix."_repository_item_attr where item_id=".$item_id." and attribute_id=".$attribute_id." and attribute_no=".$attr_no[$attribute_id];
-                print $sql."\n";
+                //$sql="select attribute_value from ".$tbl_prefix."_repository_item_attr where item_id=".$item_id." and attribute_id=".$attribute_id." and attribute_no=".$attr_no[$attribute_id];
+                
+                //print $attr_no[$attribute_id]."\n";
+                //print $old[$attribute_id][$attr_no[$attribute_id]]."=".$row[$i]."\n";
+               if(isset($old[$attribute_id][$attr_no[$attribute_id]]) ){       
+                    if(strlen(trim($row[$i]))>0 && 
+                       $row[$i]!=$old[$attribute_id][$attr_no[$attribute_id]]){
+                        $sql="update ".$tbl_prefix."_repository_item_attr set attribute_value='".$row[$i]."' where item_id=".$item_id." and attribute_id=".$attribute_id." and attribute_no=".$attr_no[$attribute_id];
+                        print $sql."\n";
+                    }
+                }
             }
             
         }
@@ -107,7 +131,7 @@ function readCSV($path,$sep,&$record,&$header){
                 $record[]=$data;
             }
             $row++;
-                   }
+            }
         fclose($handle);
     }
     return TRUE;

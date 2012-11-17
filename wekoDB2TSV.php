@@ -11,30 +11,19 @@
 // --------------------------------------------------------------------
 ini_set('memory_limit', '512M');
 
-$host='';
-$user='';
-$pass='';
-$dbname='';
-$tbl_prefix='';
-$item_type_id=1;
+$ini_array = parse_ini_file("config.ini", true);
+print_r($ini_array);
 
-//check the parameters.
-if($argc==7){
-	$host=$argv[1];
-    $user=$argv[2];
-    $pass=$argv[3];
-    $dbname=$argv[4];
-    $tbl_prefix=$argv[5];
-    $item_type_id=$argv[6];
-}else{
-    print "usage: ".$argv[0]." [host] [user] [pass] [dbname] [tbl_prefix] [item_type_id]\n";
-    exit();
-}
+$host=$ini_array['db']['host'];
+$user=$ini_array['db']['user'];
+$pass=$ini_array['db']['pass'];
+$dbname=$ini_array['db']['dbname'];
+$tbl_prefix=$ini_array['db']['tbl_prefix'];
+$item_type_id=$ini_array['output']['item_type_id'];
+//$delimiter=$ini_array['output']['delimiter'];
+$delimiter="\t";
 
 $item_type_name='';
-
-$sep="\t";
-
 
 // login 
 $link=mysql_connect($host,$user,$pass);
@@ -115,23 +104,23 @@ mysql_close($link);
 
 // print header part
 print "item type".$sep;
-print "item id".$sep;
-print "item no".$sep;
-print "title".$sep;
-print "title_english".$sep;
+print "item id".$delimiter;
+print "item no".$delimiter;
+print "title".$delimiter;
+print "title_english".$delimiter;
 
 foreach($attr as $col){
   $name=$col['name'];
   $cnt=$col['cnt'];
   for($i=0;$i<$cnt;$i++){
-     print $name.$sep;
+     print $name.$delimiter;
   }
 }
 print "\n";
 
 // print data part
 foreach($rows as $row){
-  print $row[0][0].$sep.$row[1][0].$sep.$row[2][0].$sep.$row[3][0].$sep.$row[4][0].$sep; 
+  print $row[0][0].$delimiter.$row[1][0].$delimiter.$row[2][0].$delimiter.$row[3][0].$delimiter.$row[4][0].$delimiter; 
  foreach($attr as $col){
     $id=$col['id'];
     $cnt=$col['cnt'];
@@ -139,14 +128,14 @@ foreach($rows as $row){
          $dat=$row[$id+$shift];
 	 for($i=0;$i<$cnt;$i++){
 	   if(isset($dat[$i])){
-	     print $dat[$i].$sep;
+	     print $dat[$i].$delimiter;
 	   }else{
-	     print " ".$sep;
+	     print " ".$delimiter;
 	   }
 	 }
        }else{
 	 for($i=0;$i<$cnt;$i++){
-	   print " ".$sep;
+	   print " ".$delimiter;
 	 }
        }
   } 

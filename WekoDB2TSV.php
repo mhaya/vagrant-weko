@@ -12,7 +12,7 @@
 ini_set('memory_limit', '512M');
 
 $ini_array = parse_ini_file("config.ini", true);
-print_r($ini_array);
+//print_r($ini_array);
 
 $host=$ini_array['db']['host'];
 $user=$ini_array['db']['user'];
@@ -25,6 +25,9 @@ $delimiter="\t";
 
 $item_type_name='';
 
+// 将来は無くしたい．
+$shift=5;
+
 // login 
 $link=mysql_connect($host,$user,$pass);
 if(!$link){
@@ -36,30 +39,19 @@ if(!$db_selected){
 	die('cant select!'.mysql_error());
 }
 
-// get item type name
-$result = mysql_query('select item_type_id,item_type_name from '.$tbl_prefix.'_repository_item_type where item_type_id='.$item_type_id);
-if(!$result){
-	die('fail query.'.mysql_error());
-}
-while ($row = mysql_fetch_assoc($result)) {
-  $item_type_name = $row['item_type_name'];
-}
 
-// select attribute of item
-$result = mysql_query('select item_type_id,attribute_id,attribute_name,plural_enable from '.$tbl_prefix.'_repository_item_attr_type where item_type_id='.$item_type_id);
-if(!$result){
-	die('fail query.'.mysql_error());
-}
-$attr=array();
-while ($row = mysql_fetch_assoc($result)) {
-  $tmp['name']=$row['attribute_name'];
-  $tmp['id']=$row['attribute_id'];
-  $tmp['cnt']=1;
-  $attr[$row['attribute_id']]=$tmp;
-}
+$attr=getAttributesOfItemType($item_type_id,$tbl_prefix);
 
-//print_r($attr);
+$rows=getRecords($item_type_id,$tbl_prefix);
 
+mysql_close($link);
+
+printTSV($attr,$rows,$delimiter,$shift);
+exit();
+
+
+function getRecords($item_type_id,$tbl_prefix){
+$item_type_name=getItemTypeName($item_type_id,$tbl_prefix);
 $rows=array();
 $result = mysql_query('select item_id,item_no,title,title_english from '.$tbl_prefix.'_repository_item where is_delete=0 and item_type_id='.$item_type_id);
 if(!$result){
@@ -80,7 +72,7 @@ $result = mysql_query('select item_id,attribute_id,attribute_no,attribute_value 
 if(!$result){
 	die('fail query.'.mysql_error());
 }
-$shift=5;
+
 while ($row = mysql_fetch_assoc($result)) {
   $tmp=$rows[$row['item_id']];
   $id=$row['attribute_id'];
@@ -97,13 +89,41 @@ while ($row = mysql_fetch_assoc($result)) {
 
   $rows[$row['item_id']]=$tmp;
 }
+return $rows;
+}
 
-mysql_close($link);
+function getAttributesOfItemType($item_type_id,$tbl_prefix){
+// select attribute of item
+$result = mysql_query('select item_type_id,attribute_id,attribute_name,plural_enable from '.$tbl_prefix.'_repository_item_attr_type where item_type_id='.$item_type_id);
+if(!$result){
+	die('fail query.'.mysql_error());
+}
+$attr=array();
+while ($row = mysql_fetch_assoc($result)) {
+  $tmp['name']=$row['attribute_name'];
+  $tmp['id']=$row['attribute_id'];
+  $tmp['cnt']=1;
+  $attr[$row['attribute_id']]=$tmp;
+}
+return $attr;
+}
 
-//print_r($rows);
 
+function getItemTypeName($item_type_id,$tbl_prefix){
+// get item type name
+$result = mysql_query('select item_type_id,item_type_name from '.$tbl_prefix.'_repository_item_type where item_type_id='.$item_type_id);
+if(!$result){
+	die('fail query.'.mysql_error());
+}
+while ($row = mysql_fetch_assoc($result)) {
+  $item_type_name = $row['item_type_name'];
+}
+return $item_type_name;
+}
+
+function printTSV($attr,$rows,$delimiter,$shift){
 // print header part
-print "item type".$sep;
+print "item type".$delimiter;
 print "item id".$delimiter;
 print "item no".$delimiter;
 print "title".$delimiter;
@@ -117,10 +137,9 @@ foreach($attr as $col){
   }
 }
 print "\n";
-
 // print data part
 foreach($rows as $row){
-  print $row[0][0].$delimiter.$row[1][0].$delimiter.$row[2][0].$delimiter.$row[3][0].$delimiter.$row[4][0].$delimiter; 
+    print $row[0][0].$delimiter.$row[1][0].$delimiter.$row[2][0].$delimiter.$row[3][0].$delimiter.$row[4][0].$delimiter; 
  foreach($attr as $col){
     $id=$col['id'];
     $cnt=$col['cnt'];
@@ -141,5 +160,6 @@ foreach($rows as $row){
   } 
  print "\n";
 }
-exit();
+}
+
 ?>

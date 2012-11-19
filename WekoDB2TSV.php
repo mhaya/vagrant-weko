@@ -12,7 +12,6 @@
 ini_set('memory_limit', '512M');
 
 $ini_array = parse_ini_file("config.ini", true);
-//print_r($ini_array);
 
 $host=$ini_array['db']['host'];
 $user=$ini_array['db']['user'];

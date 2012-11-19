@@ -9,7 +9,8 @@ WEKOに登録されたデータをTSVファイルに出力します．
 
 使い方：
 config.iniにデータベースの接続情報および出力するアイテムタイプ情報を設定してから，下記コマンドを実行します．
-$ php WekoDB2TSV.php > hoge.tsv
+
+ $ php WekoDB2TSV.php > hoge.tsv
 
 ##TSV2WekoDB.php
 
@@ -20,7 +21,8 @@ WekoDB2TSV.phpで出力したTSVファイルをWEKOに取り込みます
 
 使い方：
 config.iniにデータベースの接続情報を設定してから，下記コマンドを実行します．
-$ php TSV2WekoDB.php hoge.tsv > sql.txt
+
+ $ php TSV2WekoDB.php hoge.tsv > sql.txt
 
 
 

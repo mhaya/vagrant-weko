@@ -22,9 +22,6 @@ $tbl_prefix=$ini_array['db']['tbl_prefix'];
 $item_type_id=$ini_array['output']['item_type_id'];
 //$delimiter=$ini_array['output']['delimiter'];
 $delimiter="\t";
-
-$item_type_name='';
-
 // 将来は無くしたい．
 $shift=5;
 
@@ -42,7 +39,7 @@ if(!$db_selected){
 
 $attr=getAttributesOfItemType($item_type_id,$tbl_prefix);
 
-$rows=getRecords($item_type_id,$tbl_prefix);
+$rows=getRecords($item_type_id,$tbl_prefix,$shift);
 
 mysql_close($link);
 
@@ -50,7 +47,7 @@ printTSV($attr,$rows,$delimiter,$shift);
 exit();
 
 
-function getRecords($item_type_id,$tbl_prefix){
+function getRecords($item_type_id,$tbl_prefix,$shift){
 $item_type_name=getItemTypeName($item_type_id,$tbl_prefix);
 $rows=array();
 $result = mysql_query('select item_id,item_no,title,title_english from '.$tbl_prefix.'_repository_item where is_delete=0 and item_type_id='.$item_type_id);

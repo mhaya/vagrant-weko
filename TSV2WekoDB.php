@@ -55,6 +55,8 @@ function generateQuery($attr,$record,$tbl_prefix,$item_type_id){
         $item_title=$row[3];
         $item_title_english=$row[4];
 
+        $shift=5;
+
         $sql="select attribute_id,attribute_no,attribute_value from ".$tbl_prefix."_repository_item_attr where item_id=".$item_id;
 
         $result2 =mysql_query($sql);
@@ -72,7 +74,7 @@ function generateQuery($attr,$record,$tbl_prefix,$item_type_id){
         }
 
         $attr_no=array();
-        for($i=5;$i<count($row);$i++){
+        for($i=$shift;$i<count($row);$i++){
             if($attr[$i]!=-1){
                 $attribute_id=$attr[$i];
                 if(isset($attr_no[$attribute_id])){
@@ -86,11 +88,12 @@ function generateQuery($attr,$record,$tbl_prefix,$item_type_id){
                 
                 //print $attr_no[$attribute_id]."\n";
                 //print $old[$attribute_id][$attr_no[$attribute_id]]."=".$row[$i]."\n";
+             
                if(isset($old[$attribute_id][$attr_no[$attribute_id]]) ){       
-                    if(strlen(trim($row[$i]))>0 && 
-                       $row[$i]!=$old[$attribute_id][$attr_no[$attribute_id]]){
-                        $sql="update ".$tbl_prefix."_repository_item_attr set attribute_value='".$row[$i]."' where item_id=".$item_id." and attribute_id=".$attribute_id." and attribute_no=".$attr_no[$attribute_id];
-                        print $sql."\n";
+                   if((strlen(trim($row[$i]))>0) && 
+                       ($row[$i]!=$old[$attribute_id][$attr_no[$attribute_id]])){
+                           $sql="update ".$tbl_prefix."_repository_item_attr set attribute_value='".$row[$i]."' where item_id=".$item_id." and attribute_id=".$attribute_id." and attribute_no=".$attr_no[$attribute_id].";";
+                           print $sql."\n";
                     }
                 }
             }

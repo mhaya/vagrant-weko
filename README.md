@@ -4,13 +4,19 @@ WekoTool
 WEKOテスト・開発環境構築用
 
 ##インストール
-下記アプリケーションをインストールして下さい。
+virtualboxとVagrantが必要です。
 
-- virtualbox
-- - https://www.virtualbox.org/wiki/Downloads
-- vagrant
-- - http://www.vagrantup.com/downloads.html
+* virtualbox
+ * https://www.virtualbox.org/wiki/Downloads
+* vagrant
+ * http://www.vagrantup.com/downloads.html
 
+動作確認
+
+| software  | version    |
+|-----------|------------|
+|Vagrant    |1.6.3       |
+|VirtualBox |4.3.14r95030|
 
 ## 起動
 <code>vagrant up</code>

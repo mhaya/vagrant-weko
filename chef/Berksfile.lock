@@ -1,0 +1,9 @@
+DEPENDENCIES
+  mysql
+
+GRAPH
+  mysql (5.3.6)
+    yum-mysql-community (>= 0.0.0)
+  yum (3.2.2)
+  yum-mysql-community (0.1.10)
+    yum (>= 3.0)

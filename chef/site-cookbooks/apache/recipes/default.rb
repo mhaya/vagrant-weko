@@ -11,24 +11,36 @@
 #   command "apt-get update"
 #end
 
-package "apache2" do
-   action :install
+
+package 'apache2' do
+  case node[ :platform ]
+  when 'redhat', 'centos'
+    package_name 'httpd'
+  when 'debian', 'ubuntu'
+    package_name 'apache2'
+  end
+  action :install
 end
 
 # enable mod_rewite
 bash "rewrite" do
+  case node[ :platform ]
+  when 'debian', 'ubuntu'
    code <<-EOC
        sudo a2enmod rewrite
    EOC
+  end
 end
 
-# enable mod_ssl
 bash "ssl" do
-  code <<-EOC
+  case node[ :platform ]
+  when 'debian', 'ubuntu'
+    code <<-EOC
        sudo a2enmod ssl
        sudo a2ensite default-ssl
        sudo a2dissite 000-default
-  EOC
+    EOC
+  end
 end
 
 group "www-data" do
@@ -61,7 +73,6 @@ template "/etc/apache2/ports.conf" do
 #    notifies :restart, "service[apache2]"
 end
 
-
 template "/etc/apache2/sites-available/default-ssl.conf" do
     source "default-ssl.conf.erb"
     owner "root"
@@ -70,10 +81,17 @@ template "/etc/apache2/sites-available/default-ssl.conf" do
     notifies :restart, "service[apache2]"
 end
 
-service "apache2" do
-   supports :status => true, :restart => true, :reload => true
-   action [:enable, :start]
+#service "apache2" do
+#   supports :status => true, :restart => true, :reload => true
+#   action [:enable, :start]
+#end
+
+service 'apache2' do
+  case node[ :platform ]
+  when 'redhat', 'centos'
+    service_name 'httpd'
+  when 'debian', 'ubuntu'
+    service_name 'apache2'
+  end
+  action [ :enable, :start ]
 end
-
-
-

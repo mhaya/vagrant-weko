@@ -7,9 +7,9 @@ WEKOテスト・開発環境構築用
 下記アプリケーションをインストールして下さい。
 
 - virtualbox
--- https://www.virtualbox.org/wiki/Downloads
+- - https://www.virtualbox.org/wiki/Downloads
 - vagrant
--- http://www.vagrantup.com/downloads.html
+- - http://www.vagrantup.com/downloads.html
 
 
 ## 起動

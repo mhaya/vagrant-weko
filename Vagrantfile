@@ -19,5 +19,5 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 	recipe[nc2]
     ]
   end
-  config.omnibus.chef_version = :latest
+#  config.omnibus.chef_version = :latest
 end

@@ -1,0 +1,5 @@
+# create database
+db_name = 'nc2'
+execute "createdb" do
+  command "/usr/bin/mysql"
+end

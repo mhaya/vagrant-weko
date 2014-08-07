@@ -1,12 +1,19 @@
 <IfModule mod_ssl.c>
 	<VirtualHost _default_:443>
 		ServerAdmin webmaster@localhost
-                DocumentRoot /var/www/html
-<Directory "/var/www/html">
+                #DocumentRoot /var/www/html
+		DocumentRoot /var/www/nc2/html/htdocs
+#<Directory "/var/www/html">
+#        Options Indexes FollowSymLinks
+#        AllowOverride all 
+#        Require all granted
+#</Directory>
+<Directory "/var/www/nc2/html/htdocs">
         Options Indexes FollowSymLinks
-        AllowOverride all 
+        AllowOverride all
         Require all granted
 </Directory>
+
                 
 		ErrorLog ${APACHE_LOG_DIR}/error.log
 		CustomLog ${APACHE_LOG_DIR}/access.log combined

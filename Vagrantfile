@@ -102,6 +102,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 	recipe[mysql::createdb]
 	recipe[php]
 	recipe[nc2]
+#        recipe[weko]
     ]
   end
 

@@ -16,8 +16,11 @@ end
 
 execute 'extract nc2' do
 	# cwd "#{Chef::Config[:file_cache_path]}"
-	cwd "/usr/local"
-	command "tar zxvf NetCommons-2.4.2.0.tar.gz"
+	user "root"
+        group "root"
+
+        cwd "/usr/local"
+        command "tar zxvf NetCommons-2.4.2.0.tar.gz; chown -R www-data.www-data NetCommons-2.4.2.0"
 	not_if do
 		# File.directory? "#{Chef::Config[:file_cache_path]}/NetCommons-2.4.2.0"
 		File.directory? "/usr/local/NetCommons-2.4.2.0"
@@ -27,5 +30,7 @@ end
 link "/var/www/nc2" do
  	to "/usr/local/NetCommons-2.4.2.0"
 end
+
+
 
 

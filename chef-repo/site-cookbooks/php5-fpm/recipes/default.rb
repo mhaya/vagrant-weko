@@ -23,4 +23,7 @@ service "#{pkg_name}" do
   action [ :enable, :start ]
 end
 
+template "/etc/php5/fpm/php.ini" do
+  source "php.ini.erb"
+end
 

@@ -1,2 +1,5 @@
-.vagrant/
-chef/vendor
+.vagrant
+.bundle
+vendor
+
+

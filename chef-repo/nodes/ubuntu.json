@@ -1,0 +1,9 @@
+{
+	"run_list":[
+		"recipe[localedef]",
+		"recipe[php5]",
+		"recipe[php5-fpm]",
+		"recipe[nginx]"
+	]
+}
+

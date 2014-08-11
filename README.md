@@ -20,20 +20,15 @@ WEKOテスト・開発環境構築用
 |Ruby       |2.1.1p76    |
 |Bundler    |1.6.1       |
 
-##インストール
-<code>bundle install --path vendor/bundle</code>
-
-<code>bundle exec knife configure</code>
-
-<code>vagrant up</code>
-
-<code>vagrant ssh-config --host test >> ~/.ssh/config</code>
-
-<code>bundle exec knife solo prepare vagrant@test</code>
-
-<code>cd chef-repo</code>
-
-<code>bundle exec knife solo cook test</code>
+##環境構築
+	bundle install --path vendor/bundle
+	bundle exec knife configure
+	vagrant up
+	vagrant ssh-config --host test >> ~/.ssh/config
+	bundle exec knife solo prepare vagrant@test
+	vagrant sandbox on
+	cd chef-repo
+	bundle exec knife solo cook test
 
 
 

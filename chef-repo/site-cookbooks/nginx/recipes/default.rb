@@ -1,23 +1,21 @@
 # -*- coding: utf-8 -*-
 
-pkg_name = "nginx"
-
-case node["platform"]
-when "ubuntu"
-  pkg_name = "nginx"
-end
-
 # インストール
-package "#{pkg_name}" do
-    action :install
+package "nginx" do
+  package_name node['nginx']['package_name']
+  action :install
 end
 
 # サービスの有効化
-service "#{pkg_name}" do
+service "nginx" do
+  service_name node['nginx']['service_name']
   supports :status => true, :restart => true, :reload => true
   action [ :enable, :start ]
 end
 
-template "/etc/nginx/sites-available/default" do
- source "default.erb"
+group "www-data" do
+     action :modify
+     members ['vagrant']
+     append true
 end
+

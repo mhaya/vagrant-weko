@@ -1,0 +1,10 @@
+case node['platform']
+when 'ubuntu'
+  set node['php-fpm']['package_name'] = "php5-fpm"
+  set node['php-fpm']['service_name'] = "php5-fpm"
+  
+  set node['php-fpm']['service_provider'] = nil
+  if node['platform'] == 'ubuntu' and node['platform_version'].to_f >= 13.10
+    node['php-fpm']['service_provider'] = ::Chef::Provider::Service::Upstart
+  end
+end

@@ -30,5 +30,7 @@ WEKOテスト・開発環境構築用
 	cd chef-repo
 	bundle exec knife solo cook test
 
+http://localhost:8080/nc2
+
 
 

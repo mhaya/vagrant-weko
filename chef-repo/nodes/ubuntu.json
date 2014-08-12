@@ -9,7 +9,6 @@
 	"recipe[php-fpm]",
 	"recipe[php::php-apc]",
 	"recipe[nginx]",
-	"recipe[nginx::configuration]",
 	"recipe[mysql]",
 	"recipe[php::php-mysql]",
 	"recipe[netcommons]",

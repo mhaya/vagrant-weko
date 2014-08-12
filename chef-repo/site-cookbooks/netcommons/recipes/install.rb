@@ -11,7 +11,7 @@ end
 
 template "#{Chef::Config[:file_cache_path]}/nc2.sql" do
   source 'nc2.sql.erb'
-  notifies :run, 'execute[createtable]', :immediately
+  notifies :run, 'execute[import table]', :immediately
 end
 
 

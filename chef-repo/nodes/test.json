@@ -1,0 +1,21 @@
+{
+    "nginx":{
+	"port":80,
+	"enable_php":true
+	},
+    "run_list":[
+	"recipe[localedef]",
+	"recipe[php]",
+	"recipe[php-fpm]",
+	"recipe[php::php-apc]",
+	"recipe[nginx]",
+	"recipe[mysql]",
+	"recipe[php::php-mysql]",
+	"recipe[netcommons]",
+	"recipe[netcommons::createdb]",
+	"recipe[netcommons::install]",
+	"recipe[weko]"
+    ]
+}
+
+

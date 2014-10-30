@@ -25,12 +25,21 @@ WEKOテスト・開発環境構築用
 	bundle exec knife configure
 	vagrant up
 	vagrant ssh-config --host test >> ~/.ssh/config
+	cd chef-repo
 	bundle exec knife solo prepare vagrant@test
 	vagrant sandbox on
-	cd chef-repo
 	bundle exec knife solo cook test
 
+## Net Commons
+install先：
+/usr/share/nginx/NetCommons-2.4.2.0
+
 http://localhost:8080/nc2
+
+user  ID: admin
+password: admin
+
+
 
 
 

@@ -31,3 +31,17 @@ template "#{node['php-fpm']['conf.d']}/www.conf" do
 notifies :restart, "service[php-fpm]"
 end
 end
+
+
+directory node['php-fpm']['session_dir'] do
+  owner node['php-fpm']['owner']
+  group node['php-fpm']['owner']
+  mode '0644'
+  action :create
+end
+
+execute "chown" do
+  user "root"
+  command "chown -R #{node['php-fpm']['owner']}: #{node['php-fpm']['session_dir']}" 
+end
+

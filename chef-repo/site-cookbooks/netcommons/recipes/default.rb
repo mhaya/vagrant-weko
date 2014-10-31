@@ -13,8 +13,9 @@ script "install_netcommons" do
 end
 
 execute "chown" do
-  command "chown -R www-data:www-data #{node['netcommons']['dir']}" 
+  command "chown -R #{node['netcommons']['username']}:#{node['netcommons']['groupname']} #{node['netcommons']['dir']}" 
 end
+
 
 link "#{node['nginx']['root_dir']}/nc2" do
   to "#{node['netcommons']['home']}"

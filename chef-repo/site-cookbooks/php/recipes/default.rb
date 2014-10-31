@@ -7,3 +7,4 @@ node['php']['install_packages'].each do |pkg|
     action :install
   end
 end
+

@@ -15,7 +15,19 @@ end
 
 #設定
 template "#{node['php-fpm']['dir']}/php.ini" do
+case node[:platform]
+when "ubuntu"
  source "php.ini.erb"
+when "centos"
+ source "php.ini.centos.erb"
+end
  notifies :restart, "service[php-fpm]"
 end
 
+case node[:platform]
+when "centos"
+template "#{node['php-fpm']['conf.d']}/www.conf" do
+  source "centos.www.conf.erb"
+notifies :restart, "service[php-fpm]"
+end
+end

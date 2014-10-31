@@ -19,7 +19,7 @@ script "install_weko" do
 end
 
 execute "chown" do
-  command "chown -R www-data:www-data #{node['weko']['dir']}" 
+  command "chown -R #{node['weko']['owner']}: #{node['weko']['dir']}" 
 end
 
 link "#{node['netcommons']['dir']}/html/webapp/modules/repository" do

@@ -4,3 +4,11 @@ default['netcommons']['remote_uri'] = "http://www.netcommons.org/%E3%83%80%E3%82
 default['netcommons']['dir'] = "#{node['netcommons']['install_dir']}/NetCommons-2.4.2.0"
 default['netcommons']['home'] = "#{node['netcommons']['dir']}/html/htdocs"
 
+case node["platform"]
+when "ubuntu"
+default['netcommons']['username'] = "www-data"
+default['netcommons']['groupname'] = "www-data"
+when "centos"
+default['netcommons']['username'] = "nginx"
+default['netcommons']['groupname'] = "nginx"
+end

@@ -18,14 +18,14 @@ end
 template "#{node['netcommons']['dir']}/html/webapp/config/install.inc.php" do
  source "install.inc.php.erb" 
  mode 0444
- owner 'www-data'
- group 'www-data'
+ owner node['netcommons']['username']
+ group node['netcommons']['groupname']
 end
 
 #インストール後に生成されるファイルのコピー
 script "install_htdoc" do
   interpreter "bash"
-  user "www-data"
+  user node['netcommons']['username']
   code <<-EOL
   tar zxvf /vagrant/files/nc2.tar.gz -C #{node['netcommons']['home']}
   EOL

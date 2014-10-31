@@ -13,16 +13,35 @@ service "nginx" do
   action [ :enable, :start ]
 end
 
+case node[:platform]
+when "ubuntu"
 group "www-data" do
      action :modify
      members ['vagrant']
      append true
 end
+when "centos"
+group "nginx" do
+     action :modify
+     members ['vagrant']
+     append true
+end
+end
 
 #default設定ファイル
+case node[:platform]
+when "ubuntu"
 template "#{node['nginx']['dir']}/sites-available/default" do
  source "default.erb" 
  variables({
  })
  notifies :restart, "service[nginx]"
+end
+when "centos"
+template "#{node['nginx']['dir']}/conf.d/default.conf" do
+ source "default.conf.erb" 
+ variables({
+ })
+ notifies :restart, "service[nginx]"
+end
 end

@@ -3,5 +3,11 @@ default['weko']['remote_uri'] = "http://weko.at.nii.ac.jp/?action=cabinet_action
 default['weko']['install_dir'] = "/vagrant/vendor"
 default['weko']['dir'] = "#{node['weko']['install_dir']}/repository"
 
+case [:platform]
+when "ubuntu"
+ default['weko']['owner'] = "www-data"
+when "centos"
+ default['weko']['owner'] = "nginx"
+end
 
 

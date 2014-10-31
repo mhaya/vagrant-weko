@@ -2,7 +2,7 @@
 # The default server
 #
 server {
-    listen       <%= node['nginx']['port'] %>; default_server;
+    listen       <%= node['nginx']['port'] %> default_server;
     server_name  _;
     
     #charset koi8-r;

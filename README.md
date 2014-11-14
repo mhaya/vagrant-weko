@@ -35,6 +35,8 @@ Vagranfileを編集し、config.vm.boxあたりを編集する。
 	cd chef-repo
 	bundle exec knife solo prepare vagrant@test
 
+(sudoを用いてるのは127.0.0.1:80へのポートフォワーディングを実施しているため)
+
 好みに応じてsandboxを有効にする。
 
     sudo vagrant sandbox on
@@ -48,7 +50,7 @@ Vagranfileを編集し、config.vm.boxあたりを編集する。
 /usr/share/nginx/NetCommons-2.4.2.0
 
 インストールURL:
-http://localhost:8080/nc2
+http://localhost/nc2
 
 インストールURLを変更する場合は、
 グローバル・ローカルの両方で有効な名前を付けること。
@@ -57,7 +59,6 @@ http://localhost:8080/nc2
 OAI-PMHを利用する場合は、
 デフォルトポート以外は使用できない。
 （OAI PMHのidentifierはポート番号に対応しない。）
-
 
 ログインID/PASS：
 
@@ -69,6 +70,4 @@ WEKOインストール先：
 /vagrant/vendor/repository
 
 ここは共有ディレクトリ配下。
-
-
 

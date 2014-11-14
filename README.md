@@ -30,14 +30,14 @@ Vagranfileを編集し、config.vm.boxあたりを編集する。
 
 	bundle install --path vendor/bundle
 	bundle exec knife configure
-	vagrant up
-	vagrant ssh-config --host test >> ~/.ssh/config
+	sudo vagrant up
+	sudo vagrant ssh-config --host test >> ~/.ssh/config
 	cd chef-repo
 	bundle exec knife solo prepare vagrant@test
 
 好みに応じてsandboxを有効にする。
 
-    vagrant sandbox on
+    sudo vagrant sandbox on
 
 最後にknife soloを実行して、環境が出来上がるのを待つ。
 
@@ -52,10 +52,12 @@ http://localhost:8080/nc2
 
 インストールURLを変更する場合は、
 グローバル・ローカルの両方で有効な名前を付けること。
-
-また、ポート変換には対応できないのでNAT環境では注意が必要。
-
 （※WEKO内部で自身に対してHTTP/HTTPS通信を行うため）
+
+OAI-PMHを利用する場合は、
+デフォルトポート以外は使用できない。
+（OAI PMHのidentifierはポート番号に対応しない。）
+
 
 ログインID/PASS：
 

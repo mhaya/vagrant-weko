@@ -34,18 +34,39 @@ Vagranfileを編集し、config.vm.boxあたりを編集する。
 	vagrant ssh-config --host test >> ~/.ssh/config
 	cd chef-repo
 	bundle exec knife solo prepare vagrant@test
-    #好みに応じて
+
+好みに応じてsandboxを有効にする。
+
     vagrant sandbox on
+
+最後にknife soloを実行して、環境が出来上がるのを待つ。
+
 	bundle exec knife solo cook test
 
 ##サーバ環境
-install先：
+インストール先：
 /usr/share/nginx/NetCommons-2.4.2.0
 
+インストールURL:
 http://localhost:8080/nc2
+
+インストールURLを変更する場合は、
+グローバル・ローカルの両方で有効な名前を付けること。
+
+また、ポート変換には対応できないのでNAT環境では注意が必要。
+
+（※WEKO内部で自身に対してHTTP/HTTPS通信を行うため）
+
+ログインID/PASS：
 
 user  ID: admin
 password: admin
 
-WEKOは共有フォルダの/vagrant/vendor/repositoryに展開される。
+WEKOインストール先：
+
+/vagrant/vendor/repository
+
+ここは共有ディレクトリ配下。
+
+
 

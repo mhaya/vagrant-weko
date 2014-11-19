@@ -3,7 +3,7 @@
 #
 server {
     listen       <%= node['nginx']['port'] %> default_server;
-    server_name  _;
+    server_name  <%= node['nginx']['hostname'] %>;
     
     #charset koi8-r;
 
@@ -50,6 +50,8 @@ server {
     #location ~ /\.ht {
     #    deny  all;
     #}
+
+    rewrite ^/nc2/oai$ /nc2/index.php?action=repository_oaipmh& last;
 }
 
 

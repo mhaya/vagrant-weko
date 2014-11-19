@@ -43,5 +43,6 @@ end
 execute "chown" do
   user "root"
   command "chown -R #{node['php-fpm']['owner']}: #{node['php-fpm']['session_dir']}" 
+  command "chmod 777 #{node['php-fpm']['session_dir']}"
 end
 

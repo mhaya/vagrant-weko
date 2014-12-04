@@ -1,0 +1,28 @@
+{
+    "site":{
+	"hostname":"localhost",
+	"port":80,
+	"www_srv":"apache2", 
+	"www_root":"/var/www/html", 
+	"www_user":"",
+	"www_group":"",
+	"nc2_install":"/var/www" 
+    },
+    "nginx":{
+	"enable_php":true
+	},
+    "run_list":[
+	"recipe[localedef]",
+	"recipe[apache2]",
+	"recipe[php]",
+	"recipe[php::php-apc]",
+	"recipe[mysql]",
+	"recipe[php::php-mysql]",
+	"recipe[netcommons]",
+	"recipe[netcommons::createdb]",
+	"recipe[netcommons::install]",
+	"recipe[weko]"
+    ]
+}
+
+

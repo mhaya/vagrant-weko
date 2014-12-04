@@ -7,17 +7,16 @@ script "install_netcommons" do
   interpreter "bash"
   user "root"
   code <<-EOL
-  install -d #{node['netcommons']['install_dir']}
-  tar zxvf #{Chef::Config[:file_cache_path]}/#{node['netcommons']['filename']} -C #{node['netcommons']['install_dir']}
+  install -d #{node['site']['nc2_install']}
+  tar zxvf #{Chef::Config[:file_cache_path]}/#{node['netcommons']['filename']} -C #{node['site']['nc2_install']}
   EOL
 end
 
 execute "chown" do
-  command "chown -R #{node['netcommons']['username']}:#{node['netcommons']['groupname']} #{node['netcommons']['dir']}" 
+  command "chown -R #{node['site']['www_user']}: #{node['netcommons']['dir']}" 
 end
 
-
-link "#{node['nginx']['root_dir']}/nc2" do
+link "#{node['site']['www_root']}/nc2" do
   to "#{node['netcommons']['home']}"
   link_type :symbolic
 end

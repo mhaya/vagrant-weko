@@ -1,18 +1,24 @@
+default['site']['www_srv']="nginx"
+default['site']['www_root']="/usr/share/nginx/html"
+
+
 case node['platform']
 when "ubuntu"
-default['nginx']['hostname'] = "localhost"
+default['site']['www_user']="www-data"
+default['site']['www_group']="www-data"
 default['nginx']['package_name'] = "nginx"
 default['nginx']['service_name'] = "nginx"
 default['nginx']['dir'] = "/etc/nginx"
-default['nginx']['root_dir'] = "/usr/share/nginx/html"
+
 #else
 #set['nginx']['package'] = "nginx"
 when "centos"
-default['nginx']['hostname'] = "localhost"
+default['site']['www_user']="nginx"
+default['site']['www_group']="nginx"
 default['nginx']['package_name'] = "nginx"
 default['nginx']['service_name'] = "nginx"
 default['nginx']['dir'] = "/etc/nginx"
-default['nginx']['root_dir'] = "/usr/share/nginx/html"
+
 #else
 #set['nginx']['package'] = "nginx"
 end

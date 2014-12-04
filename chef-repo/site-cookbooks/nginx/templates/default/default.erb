@@ -1,5 +1,5 @@
 server {
-	listen <%= node['nginx']['port'] %>;
+	listen <%= node['site']['port'] %>;
 
 	root /usr/share/nginx/html;
 	index index.html index.htm index.php;

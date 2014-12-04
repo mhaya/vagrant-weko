@@ -5,9 +5,9 @@ default['weko']['dir'] = "#{node['weko']['install_dir']}/repository"
 
 case [:platform]
 when "ubuntu"
- default['weko']['owner'] = "www-data"
+ default['weko']['owner'] = "#{node['site']['www_user']}"
 when "centos"
- default['weko']['owner'] = "nginx"
+ default['weko']['owner'] = "#{node['site']['www_user']}"
 end
 
 

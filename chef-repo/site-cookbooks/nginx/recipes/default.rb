@@ -13,20 +13,12 @@ service "nginx" do
   action [ :enable, :start ]
 end
 
-case node[:platform]
-when "ubuntu"
-group "www-data" do
+group node['site']['www_user'] do
      action :modify
      members ['vagrant']
      append true
 end
-when "centos"
-group "nginx" do
-     action :modify
-     members ['vagrant']
-     append true
-end
-end
+
 
 #default設定ファイル
 case node[:platform]

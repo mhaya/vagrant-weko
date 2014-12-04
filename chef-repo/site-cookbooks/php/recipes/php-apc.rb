@@ -5,4 +5,3 @@ node['php']['apc']['install_packages'].each do |pkg|
     action :install
   end
 end
-

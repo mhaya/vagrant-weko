@@ -60,14 +60,6 @@ apache2を利用する場合は
 インストールURL:
 http://localhost/nc2
 
-インストールURLを変更する場合は、
-グローバル・ローカルの両方で有効な名前を付けること。
-（※WEKO内部で自身に対してHTTP/HTTPS通信を行うため）
-
-OAI-PMHを利用する場合は、
-デフォルトポート以外は使用できない。
-（OAI PMHのidentifierはポート番号に対応しない。）
-
 ログインID/PASS：
 
 user  ID: admin
@@ -80,5 +72,15 @@ WEKOインストール先：
 ここは共有ディレクトリ配下。
 
 
-モジュールのインストールは実施していないので、
-管理画面からインストールする。
+モジュールインストールは未実施。
+
+その他、WEKOで利用される以下のパッケージを導入済み。
+
+- Mroonga
+- wvWare
+- xlhtml
+- poppler
+- ImageMagick
+- pdftk
+- ffmpeg
+- mecab

@@ -24,7 +24,9 @@
 	"recipe[netcommons::createdb]",
 	"recipe[netcommons::install]",
 	"recipe[weko]",
-	"recipe[wvWare]"
+	"recipe[wvWare]",
+	"recipe[ImageMagick]",
+	"recipe[poppler]"
     ]
 }
 

@@ -1,5 +1,5 @@
 .vagrant
 .bundle
 vendor
-
+*~
 

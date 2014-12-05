@@ -4,9 +4,9 @@ user_name = node['netcommons']['db_user']
 user_password = node['netcommons']['db_pass']
 
 execute "createdb" do
-  command "/usr/bin/mysql -u root < #{Chef::Config[:file_cache_path]}/createdb.sql"
+  command "#{node['site']['mysql_cmd']} -u root < #{Chef::Config[:file_cache_path]}/createdb.sql"
   action :nothing
-  not_if "/usr/bin/mysql -u root -D #{db_name}"
+  not_if "#{node['site']['mysql_cmd']} -u root -D #{db_name}"
 end
 
 template "#{Chef::Config[:file_cache_path]}/createdb.sql" do
@@ -19,9 +19,9 @@ end
  
 # create database user
 execute 'createuser' do
-  command "/usr/bin/mysql -u root < #{Chef::Config[:file_cache_path]}/createuser.sql"
+  command "#{node['site']['mysql_cmd']} -u root < #{Chef::Config[:file_cache_path]}/createuser.sql"
   action :nothing
-  not_if "/usr/bin/mysql -u #{user_name} -p#{user_password} -D #{db_name}"
+  not_if "#{node['site']['mysql_cmd']} -u #{user_name} -p#{user_password} -D #{db_name}"
 end
  
 template "#{Chef::Config[:file_cache_path]}/createuser.sql" do

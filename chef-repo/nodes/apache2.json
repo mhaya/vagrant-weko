@@ -6,7 +6,8 @@
 	"www_root":"/var/www/html", 
 	"www_user":"apache",
 	"www_group":"apache",
-	"nc2_install":"/var/www" 
+	"nc2_install":"/var/www",
+	"mysql_cmd":"/opt/rh/mysql55/root/usr/bin/mysql"
     },
     "nginx":{
 	"enable_php":true
@@ -17,7 +18,7 @@
 	"recipe[apache2]",
 	"recipe[php]",
 	"recipe[php::php-apc]",
-	"recipe[mysql]",
+	"recipe[mroonga]",
 	"recipe[php::php-mysql]",
 	"recipe[netcommons]",
 	"recipe[netcommons::createdb]",

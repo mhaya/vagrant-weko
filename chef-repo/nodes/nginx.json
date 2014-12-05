@@ -17,7 +17,7 @@
 	"recipe[nginx]", 
 	"recipe[php]",
 	"recipe[php::php-apc]",
-	"recipe[mysql]",
+	"recipe[mroonga]",
 	"recipe[php::php-mysql]",
 	"recipe[netcommons]",
 	"recipe[netcommons::createdb]",

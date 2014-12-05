@@ -5,7 +5,7 @@ user_password = node['netcommons']['db_pass']
 
 #
 execute 'import table' do
-  command "/usr/bin/mysql -u root #{db_name} < #{Chef::Config[:file_cache_path]}/nc2.sql"
+  command "#{node['site']['mysql_cmd']} -u root #{db_name} < #{Chef::Config[:file_cache_path]}/nc2.sql"
   action :nothing
 end
 

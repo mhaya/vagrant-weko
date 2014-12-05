@@ -1,5 +1,6 @@
 default['weko']['filename'] = "weko2.1.1.tar.gz"
 default['weko']['remote_uri'] = "http://weko.at.nii.ac.jp/?action=cabinet_action_main_download&block_id=14&room_id=1&cabinet_id=3&file_id=75&upload_id=269"
+default[:weko][:checksum]="44c8d4dd1db28e70e8f8e8089dd484043fca9d39f78fd18fd0245379c9d6699d"
 default['weko']['install_dir'] = "/vagrant/vendor"
 default['weko']['dir'] = "#{node['weko']['install_dir']}/repository"
 

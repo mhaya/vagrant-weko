@@ -1,4 +1,4 @@
-# -*- coding: undecided -*-
+# -*- encoding: utf-8 -*-
 
 #subversion "weko" do
 #  repository "http://forge.at.nii.ac.jp/svn/nc/repository/trunk"
@@ -8,6 +8,7 @@
 #end
 remote_file "#{Chef::Config[:file_cache_path]}/#{node['weko']['filename']}" do
   source node['weko']['remote_uri']
+  checksum node[:weko][:checksum]
   action :create
 end
 

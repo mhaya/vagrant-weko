@@ -1,3 +1,5 @@
+# -*- coding: undecided -*-
+
 #subversion "weko" do
 #  repository "http://forge.at.nii.ac.jp/svn/nc/repository/trunk"
 #  revision "HEAD"
@@ -22,9 +24,12 @@ execute "chown" do
   command "chown -R #{node['weko']['owner']}: #{node['weko']['dir']}" 
 end
 
+#シンボリックリンクの作成
 link "#{node['netcommons']['dir']}/html/webapp/modules/repository" do
   to "#{node['weko']['dir']}"
   link_type :symbolic
+  # すでにシンボリックリングが存在する場合は作成しない。
+  not_if { File.exists?("#{node['netcommons']['dir']}/html/webapp/modules/repository") }
 end
 
 

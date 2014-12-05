@@ -1,0 +1,6 @@
+default[:rpmforge][:yumplugin] = "yum-plugin-priorities"
+default[:rpmforge][:repofile] = "/etc/yum.repos.d/CentOS-Base.repo"
+default[:rpmforge][:repofile_tmpl] = "CentOS-Base.repo.erb"
+default[:rpmforge][:rpm_url] = "http://pkgs.repoforge.org/rpmforge-release/rpmforge-release-0.5.3-1.el6.rf.x86_64.rpm"
+default[:rpmforge][:rpm] ="rpmforge-release-0.5.3-1.el6.rf.x86_64.rpm"
+default[:rpmforge][:rpm_checksum] = "1f98252908e397f70a216964ed836e93ba4e80550eac343586895a993a41afb7"

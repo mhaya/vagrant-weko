@@ -4,15 +4,16 @@
 	"port":80,
 	"www_srv":"apache2", 
 	"www_root":"/var/www/html", 
-	"www_user":"",
-	"www_group":"",
+	"www_user":"apache",
+	"www_group":"apache",
 	"nc2_install":"/var/www" 
     },
     "nginx":{
 	"enable_php":true
 	},
     "run_list":[
-	"recipe[localedef]",
+	"recipe[site]",
+        "recipe[localedef]",
 	"recipe[apache2]",
 	"recipe[php]",
 	"recipe[php::php-apc]",

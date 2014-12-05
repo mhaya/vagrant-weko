@@ -2,16 +2,17 @@
     "site":{
 	"hostname":"localhost",
 	"port":80,
-	"www_srv":"apache2", 
-	"www_root":"/var/www/html", 
-	"www_user":"",
-	"www_group":"",
-	"nc2_install":"/var/www" 
+	"www_srv":"nginx", 
+	"www_root":"/usr/share/nginx/html", 
+	"www_user":"nginx",
+	"www_group":"nginx",
+	"nc2_install":"/usr/share/nginx" 
     },
     "nginx":{
 	"enable_php":true
 	},
     "run_list":[
+	"recipe[site]",
 	"recipe[localedef]",
 	"recipe[nginx]", 
 	"recipe[php]",

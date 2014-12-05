@@ -13,7 +13,7 @@
 	},
     "run_list":[
 	"recipe[site]",
-	"recipe[localedef]",
+        "recipe[localedef]",
 	"recipe[apache2]",
 	"recipe[php]",
 	"recipe[php::php-apc]",

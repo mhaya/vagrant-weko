@@ -9,12 +9,14 @@ template node['php']['php.ini'] do
  owner "root"
  group "root"
  action :nothing
+# notifies :restart, "service[#{node['site']['www_srv']}]"
 end
 
 
 package node['php']['package'] do
   action :install
   notifies :create,resources(:template => "#{node['php']['php.ini']}" )
+  notifies :restart, "service[#{node['site']['www_srv']}]"
 end
 
 # インストール

@@ -31,7 +31,7 @@ Vagranfileを編集し、config.vm.boxあたりを編集する。
 	bundle install --path vendor/bundle
 	bundle exec knife configure
 	sudo vagrant up
-	sudo vagrant ssh-config --host test >> ~/.ssh/config
+    sudo vagrant ssh-config --host test >> ~/.ssh/config
 	cd chef-repo
 	bundle exec knife solo prepare vagrant@test
 
@@ -40,6 +40,14 @@ Vagranfileを編集し、config.vm.boxあたりを編集する。
 好みに応じてsandboxを有効にする。
 
     sudo vagrant sandbox on
+
+nginxを利用する場合は
+
+    sudo cp $ cp nodes/nginx.json nodes/test.json
+
+apache2を利用する場合は
+
+    sudo cp $ cp nodes/apache.json nodes/test.json
 
 最後にknife soloを実行して、環境が出来上がるのを待つ。
 

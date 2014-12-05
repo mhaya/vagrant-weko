@@ -23,7 +23,8 @@
 	"recipe[netcommons]",
 	"recipe[netcommons::createdb]",
 	"recipe[netcommons::install]",
-	"recipe[weko]"
+	"recipe[weko]",
+	"recipe[wvWare]"
     ]
 }
 

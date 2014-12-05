@@ -23,7 +23,11 @@
 	"recipe[netcommons::createdb]",
 	"recipe[netcommons::install]",
 	"recipe[php-fpm]",
-	"recipe[weko]"
+	"recipe[weko]",
+	"recipe[wvWare]",
+	"recipe[ImageMagick]",
+	"recipe[poppler]",
+	"recipe[pdftk]"
     ]
 }
 

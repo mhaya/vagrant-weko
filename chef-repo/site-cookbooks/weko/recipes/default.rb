@@ -22,7 +22,7 @@ script "install_weko" do
 end
 
 execute "chown" do
-  command "chown -R #{node['weko']['owner']}: #{node['weko']['dir']}" 
+  command "chown -R #{node['site']['www_user']}: #{node['weko']['dir']}" 
 end
 
 #シンボリックリンクの作成

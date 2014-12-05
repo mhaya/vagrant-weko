@@ -4,11 +4,11 @@ default[:weko][:checksum]="44c8d4dd1db28e70e8f8e8089dd484043fca9d39f78fd18fd0245
 default['weko']['install_dir'] = "/vagrant/vendor"
 default['weko']['dir'] = "#{node['weko']['install_dir']}/repository"
 
-case [:platform]
-when "ubuntu"
- default['weko']['owner'] = "#{node['site']['www_user']}"
-when "centos"
- default['weko']['owner'] = "#{node['site']['www_user']}"
-end
+#case [:platform]
+#when "ubuntu"
+# default['weko']['owner'] = "#{node['site']['www_user']}"
+#when "centos"
+# default['weko']['owner'] = "#{node['site']['www_user']}"
+#end
 
 

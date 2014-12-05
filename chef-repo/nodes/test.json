@@ -26,7 +26,8 @@
 	"recipe[weko]",
 	"recipe[wvWare]",
 	"recipe[ImageMagick]",
-	"recipe[poppler]"
+	"recipe[poppler]",
+	"recipe[pdftk]"
     ]
 }
 

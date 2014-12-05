@@ -21,16 +21,16 @@ script "install_weko" do
   EOL
 end
 
-execute "chown" do
-  command "chown -R #{node['site']['www_user']}: #{node['weko']['dir']}" 
+execute "chown_repository" do
+  command "cd #{node[:nc2][:module_dir]}; chown -R #{node['site']['www_user']}: #{node[:weko][:module_name]}" 
 end
 
 #シンボリックリンクの作成
-link "#{node['netcommons']['dir']}/html/webapp/modules/repository" do
+link "#{node[:nc2][:module_dir]}/#{node[:weko][:module_name]}" do
   to "#{node['weko']['dir']}"
   link_type :symbolic
   # すでにシンボリックリングが存在する場合は作成しない。
-  not_if { File.exists?("#{node['netcommons']['dir']}/html/webapp/modules/repository") }
+  not_if { File.exists?("#{node[:nc2][:module_dir]}/#{node[:weko][:module_name]}") }
 end
 
 

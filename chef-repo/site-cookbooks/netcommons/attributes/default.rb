@@ -4,6 +4,7 @@ default['netcommons']['remote_uri'] = "http://www.netcommons.org/%E3%83%80%E3%82
 default[:nc2][:checksum] = "a325fbf939d29e6a1b939f63c72ddc415ac36d3838d3e6d8b043446496af39a3"
 default['netcommons']['dir'] = "#{node['site']['nc2_install']}/NetCommons-2.4.2.0"
 default['netcommons']['home'] = "#{node['netcommons']['dir']}/html/htdocs"
+default[:nc2][:module_dir] = "#{node['netcommons']['dir']}/html/webapp/modules"
 
 #case node["platform"]
 #when "ubuntu"

@@ -29,7 +29,8 @@
 	"recipe[poppler]",
 	"recipe[pdftk]",
 	"recipe[rpmforge]",
-	"recipe[ffmpeg]"
+	"recipe[ffmpeg]",
+	"recipe[xlhtml]"
     ]
 }
 

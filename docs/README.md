@@ -10,7 +10,7 @@
 
 ## WEKO MEMO<a name="sec2"/>
 
-WEKOリポジトリの構築で気がついたこと。
+WEKOリポジトリの作業メモ。
 
 ### DB関係<a name="sec2-1"/>
 

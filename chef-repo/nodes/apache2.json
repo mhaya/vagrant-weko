@@ -30,7 +30,8 @@
 	"recipe[pdftk]",
 	"recipe[rpmforge]",
 	"recipe[ffmpeg]",
-	"recipe[xlhtml]"
+	"recipe[xlhtml]",
+	"recipe[screen]"
     ]
 }
 

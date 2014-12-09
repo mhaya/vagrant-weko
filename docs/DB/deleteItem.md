@@ -1,10 +1,11 @@
 # 単一アイテムを完全に削除する
-1. アイテムの削除
-2. 確認
 
-## <a name="sec1"/>アイテムの削除
+1. レコードからアイテムを削除する
+2. 削除結果を確認する
 
-仮想環境にログインする。
+## <a name="sec1"/>レコードからアイテムを削除する
+
+サーバにログインする。
     
     $ ssh test
     
@@ -31,10 +32,12 @@ databaseを選択する。
     Database changed
     >
 
-次のSQLを実行する。    
+ユーザ変数を定義する。@target には削除対象のitem_noを指定する。@prefix にはNetCommons2のテーブルプレフィックスを指定する。
 
     SET @target=33;
     SET @prefix="nc2";
+
+以下のクエリを実行し、テーブルからアイテムを削除する。
 
     SET @s = CONCAT("DELETE FROM ",@prefix,"_repository_attached_file WHERE item_id = ",@target,";");
     PREPARE stmt FROM @s;
@@ -101,7 +104,7 @@ mysql からログアウトし、ssh からも抜ける。
     Connection to 127.0.0.1 closed.
 
 
-## <a name="sec2"/>確認
+## <a name="sec2"/>削除結果を確認する
 
 アイテムが削除されているかを確認する。
 
@@ -109,10 +112,13 @@ mysql からログアウトし、ssh からも抜ける。
 
 「アイテムが削除されています」と表示されれば成功である。
 
+以上。
 
 [TOPへ戻る](../)
 
 ---
+Date: 20141209, last update: 20141209 
+
 <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="クリエイティブ・コモンズ・ライセンス" style="border-width:0" src="http://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br /><span xmlns:cc="http://creativecommons.org/ns#" property="cc:attributionName">Masaharu Hayashi</span> を著作者とするこの 作品 は <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">クリエイティブ・コモンズの 表示 4.0 国際 ライセンス</a>で提供されています
 
 

@@ -1,6 +1,5 @@
 case node['platform']
 when "centos"
-default['apache2']['hostname'] = "localhost"
 default['apache2']['package_name'] = "httpd"
 default['apache2']['service_name'] = "httpd"
 default['apache2']['dir'] = "/etc/httpd"

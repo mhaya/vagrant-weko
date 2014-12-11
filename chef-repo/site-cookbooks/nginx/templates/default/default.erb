@@ -3,7 +3,7 @@ server {
 
 	root /usr/share/nginx/html;
 	index index.html index.htm index.php;
-	server_name localhost;
+	server_name <%= node['site']['hostname'] %>;
 	location / {
 		try_files $uri $uri/ =404;
 	}

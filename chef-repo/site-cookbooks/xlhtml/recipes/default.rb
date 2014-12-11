@@ -25,7 +25,9 @@ script "install_xlhtml" do
     cwd "#{Chef::Config[:file_cache_path]}" 
     code <<-EOH
     tar -zxf #{node[:xlhtml][:file]}
+    #cd xlhtml-0.5
     cd xlhtml
+    #./configure --prefix=/usr --build=x86-unknown-linux-gnu
     ./configure --prefix=/usr
     make
     make install

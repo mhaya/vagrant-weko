@@ -21,10 +21,6 @@ script "install_weko" do
   EOL
 end
 
-execute "chown_repository" do
-  command "cd #{node[:nc2][:module_dir]}; chown -R #{node['site']['www_user']}: #{node[:weko][:module_name]}" 
-end
-
 #シンボリックリンクの作成
 link "#{node[:nc2][:module_dir]}/#{node[:weko][:module_name]}" do
   to "#{node['weko']['dir']}"
@@ -32,5 +28,10 @@ link "#{node[:nc2][:module_dir]}/#{node[:weko][:module_name]}" do
   # すでにシンボリックリングが存在する場合は作成しない。
   not_if { File.exists?("#{node[:nc2][:module_dir]}/#{node[:weko][:module_name]}") }
 end
+
+execute "chown_repository" do
+  command "cd #{node[:nc2][:module_dir]}; chown -R #{node['site']['www_user']}: #{node[:weko][:module_name]}" 
+end
+
 
 

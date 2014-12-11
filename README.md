@@ -30,12 +30,10 @@ Vagranfileを編集し、config.vm.boxあたりを編集する。
 
 	bundle install --path vendor/bundle
 	bundle exec knife configure
-	sudo vagrant up
-    sudo vagrant ssh-config --host test >> ~/.ssh/config
+	vagrant up
+    vagrant ssh-config --host weko >> ~/.ssh/config
 	cd chef-repo
-	bundle exec knife solo prepare vagrant@test
-
-(sudoを用いてるのは127.0.0.1:80へのポートフォワーディングを実施しているため)
+	bundle exec knife solo prepare vagrant@weko
 
 好みに応じてsandboxを有効にする。
 
@@ -43,22 +41,22 @@ Vagranfileを編集し、config.vm.boxあたりを編集する。
 
 nginxを利用する場合は
 
-    sudo cp $ cp nodes/nginx.json nodes/test.json
+    sudo cp $ cp nodes/nginx.json nodes/weko.json
 
 apache2を利用する場合は
 
-    sudo cp $ cp nodes/apache.json nodes/test.json
+    sudo cp $ cp nodes/apache.json nodes/weko.json
 
 最後にknife soloを実行して、環境が出来上がるのを待つ。
 
-	bundle exec knife solo cook test
+	bundle exec knife solo cook weko
 
 ##サーバ環境
 インストール先：
 /usr/share/nginx/NetCommons-2.4.2.0
 
 インストールURL:
-http://localhost/nc2
+http://weko/nc2
 
 ログインID/PASS：
 
@@ -70,7 +68,6 @@ WEKOインストール先：
 /vagrant/vendor/repository
 
 ここは共有ディレクトリ配下。
-
 
 モジュールインストールは未実施。
 

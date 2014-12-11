@@ -1,6 +1,6 @@
 {
     "site":{
-	"hostname":"localhost",
+	"hostname":"weko",
 	"port":80,
 	"www_srv":"apache2", 
 	"www_root":"/var/www/html", 

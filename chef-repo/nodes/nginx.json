@@ -7,6 +7,8 @@
 	"www_user":"nginx",
 	"www_group":"nginx",
 	"nc2_install":"/usr/share/nginx" 
+	"mysql_cmd":"/opt/rh/mysql55/root/usr/bin/mysql",
+	"mysqladmin_cmd":"/opt/rh/mysql55/root/usr/bin/mysqladmin"
     },
     "nginx":{
 	"enable_php":true
@@ -31,7 +33,9 @@
 	"recipe[rpmforge]",
 	"recipe[ffmpeg]",
 	"recipe[xlhtml]",
-	"recipe[screen]"
+	"recipe[screen]",
+	"recipe[tomcat]",
+	"recipe[oaicatmuseum]"
     ]
 }
 

@@ -71,7 +71,7 @@ WEKOインストール先：
 
 モジュールインストールは未実施。
 
-その他、WEKOで利用される以下のパッケージを導入済み。
+WEKOで利用される以下のパッケージを導入済み。
 
 - Mroonga
 - wvWare
@@ -81,3 +81,7 @@ WEKOインストール先：
 - pdftk
 - ffmpeg
 - mecab
+
+その他
+- tomcat6 
+- oaicatmuseum 1.1  http://weko:8080/oaicatmuseum_1.1

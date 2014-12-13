@@ -54,7 +54,7 @@ template "#{Chef::Config[:file_cache_path]}/create_oaicatmuseum_user.sql" do
 end
 
 execute "create_oaicatmuseum_dbuser" do
-  command "#{node['site']['mysql_cmd']} -u root < #{Chef::Config[:file_cache_path]}/create_oaicatmuseum_user.sql;sleep 300"
+  command "#{node['site']['mysql_cmd']} -u root < #{Chef::Config[:file_cache_path]}/create_oaicatmuseum_user.sql;sleep 120"
 #  action :nothing
 end
 
@@ -78,5 +78,17 @@ template "/usr/share/tomcat6/webapps/oaicatmuseum_1.1/WEB-INF/classes/oaicat.pro
  action :create
  #notifies :run, "script[copy_mysql-connector-java]", :immediately
  notifies :restart, "service[tomcat]"
+end
+
+template "#{node[:apache2][:httpd_conf_dir]}/oaicatmuseum.conf" do
+ source "oaicatmuseum.conf.erb"
+ variables({
+ })
+# mode 0644
+# owner "root"
+# group "root"
+ action :create
+ #notifies :run, "script[copy_mysql-connector-java]", :immediately
+ notifies :restart, "service[apache2]"
 end
 

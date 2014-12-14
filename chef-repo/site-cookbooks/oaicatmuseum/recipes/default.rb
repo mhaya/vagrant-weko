@@ -8,7 +8,7 @@
 # All rights reserved - Do Not Redistribute
 #
 
-remote_file "#{node[:oaicatmuseum][:webapps_dir]}/#{node[:oaicatmuseum][:file]}" do
+remote_file "#{node[:tomcat][:webapps_dir]}/#{node[:oaicatmuseum][:file]}" do
   source node[:oaicatmuseum][:file_url]
   checksum node[:oaicatmuseum][:file_checksum]
   action :create
@@ -68,7 +68,7 @@ script "copy_mysql-connector-java" do
 #   action :nothing
 end
 
-template "#{node[:oaicatmuseum][:webpps_dir]}/WEB-INF/classes/oaicat.properties" do
+template "#{node[:oaicatmuseum][:webapps_dir]}/WEB-INF/classes/oaicat.properties" do
  source "oaicat.properties.erb"
  variables({
  })

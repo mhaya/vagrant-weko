@@ -1,6 +1,6 @@
-default[:oaicatmuseum][:webapps_dir] = "/usr/share/tomcat6/webapps"
 #default[:oaicatmuseum][:file] = "oaicatmuseum_1.1.war"
 default[:oaicatmuseum][:file] = "oaicatmuseum.war"
+default[:oaicatmuseum][:webpps_dir] = "#{node[:tomcat][:webpps_dir]}/ocaicatmuseum"
 default[:oaicatmuseum][:file_url] = "http://www.oclc.org/content/dam/research/activities/oaicatmuseum/oaicatmuseum_1.1.war"
 default[:oaicatmuseum][:file_checksum] = "b2034e117585d79aee35a2c6edcc07c66074b18e9b30edb8fd5df26e4dec15d2"
 #default[:oaicatmuseum][:file2] = "oaicatdb.sql"

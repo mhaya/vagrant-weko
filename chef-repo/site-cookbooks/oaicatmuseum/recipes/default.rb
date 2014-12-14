@@ -63,12 +63,12 @@ script "copy_mysql-connector-java" do
    user "root"
 #   cwd "#{Chef::Config[:file_cache_path]}" 
    code <<-EOH
-     cp /usr/share/java/mysql-connector-java.jar #{node[:oaicatmuseum][:webapps_dir]}/oaicatmuseum_1.1/WEB-INF/lib/
+     cp /usr/share/java/mysql-connector-java.jar #{node[:oaicatmuseum][:webapps_dir]}/WEB-INF/lib/
    EOH
 #   action :nothing
 end
 
-template "/usr/share/tomcat6/webapps/oaicatmuseum_1.1/WEB-INF/classes/oaicat.properties" do
+template "#{node[:oaicatmuseum][:webpps_dir]}/WEB-INF/classes/oaicat.properties" do
  source "oaicat.properties.erb"
  variables({
  })

@@ -34,7 +34,8 @@
 	"recipe[xlhtml]",
 	"recipe[screen]",
 	"recipe[tomcat]",
-	"recipe[oaicatmuseum]"
+	"recipe[oaicatmuseum]",
+	"recipe[virtuoso]"
     ]
 }
 

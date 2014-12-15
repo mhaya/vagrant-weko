@@ -1,10 +1,12 @@
-WekoTool
+vagrant-weko
 ======
 
-リポジトリソフトウェアWEKOの実行環境を構築します。
-共有フォルダにWEKOを展開するので開発にも便利です。
+NIIが開発したリポジトリソフトウェア WEKO がインストールされた環境を構築します。
 
-##実行環境
+WEKO の実験や開発を行うための環境を素早く構築することを目的としています。
+
+##必要ソフトウェア
+
 * virtualbox
  * https://www.virtualbox.org/wiki/Downloads
 * vagrant
@@ -14,10 +16,6 @@ WekoTool
 
 動作確認バージョン
 
-| OS        | Version    |
-|-----------|------------|
-| CentOS    | 6.5        |
-
 | software  | version    |
 |-----------|------------|
 |Vagrant    |1.6.3       |
@@ -25,63 +23,65 @@ WekoTool
 |Ruby       |2.1.1p76    |
 |Bundler    |1.6.1       |
 
-##環境構築
-Vagranfileを編集し、config.vm.boxあたりを編集する。
+その他、vagrant sahara pluginをインストールしておくと便利です。
 
-	bundle install --path vendor/bundle
-	bundle exec knife configure
-	vagrant up
+##使い方
+
+    git clone https://github.com/mhaya/vagrant-weko.git
+    cd vagrant-weko/
+    bundle install --path vendor/bundle
+    bundle exec knife configure
+    vagrant up
     vagrant ssh-config --host weko >> ~/.ssh/config
-	cd chef-repo
-	bundle exec knife solo prepare vagrant@weko
+    cd chef-repo/
+	bundle exec knife solo prepare weko
+    bundle exec knife solo cook weko
 
-好みに応じてsandboxを有効にする。
+以上でNC2のインストールまでが完了します。
 
-    sudo vagrant sandbox on
+以下のURLにアクセスし、WEKOモジュールのインストールを行ってください。
 
-nginxを利用する場合は
-
-    sudo cp $ cp nodes/nginx.json nodes/weko.json
-
-apache2を利用する場合は
-
-    sudo cp $ cp nodes/apache.json nodes/weko.json
-
-最後にknife soloを実行して、環境が出来上がるのを待つ。
-
-	bundle exec knife solo cook weko
-
-##サーバ環境
-インストール先：
-/usr/share/nginx/NetCommons-2.4.2.0
-
-インストールURL:
 http://weko/nc2
 
-ログインID/PASS：
+管理ユーザのIDはadminです。パスワードは管理ユーザIDと同じです。
 
-user  ID: admin
-password: admin
+## 環境説明
 
-WEKOインストール先：
+apache2:
+- /etc/httpd/conf/httpd.conf
 
-/vagrant/vendor/repository
+mysql:
+- /etc/my.cnf
 
-ここは共有ディレクトリ配下。
+php:
+- /etc/httpd/conf.d/php.ini
+- /etc/php.ini
 
-モジュールインストールは未実施。
+Netcommons2:
+- /usr/share/nginx/NetCommons-2.4.2.0
 
-WEKOで利用される以下のパッケージを導入済み。
+WEKO:
+- /vagrant/vendor/repository
 
+WEKO関係のパッケージ：
 - Mroonga
+- poppler
 - wvWare
 - xlhtml
-- poppler
+- mecab
 - ImageMagick
 - pdftk
 - ffmpeg
-- mecab
 
-その他
-- tomcat6 
-- oaicatmuseum 1.1  http://weko:8080/oaicatmuseum_1.1
+tomcat6:
+- /usr/share/tomcat6
+
+oaicatmuseum:
+- /usr/share/tomcat6/webapps/oaicatmuseum
+- /etc/httpd/conf.d/oaicatmuseum.conf
+- http://weko/oaicatmuseum
+
+virtuoso-opensource:
+- /usr/local/
+- http://weko:8890/
+

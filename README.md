@@ -7,9 +7,9 @@ WEKO の実験や開発を行うための環境を素早く構築することを
 
 ##必要ソフトウェア
 
-* virtualbox
+* Virtualbox
  * https://www.virtualbox.org/wiki/Downloads
-* vagrant
+* Vagrant
  * http://www.vagrantup.com/downloads.html
 * Ruby
  * Bundler
@@ -58,7 +58,7 @@ php:
 - /etc/php.ini
 
 Netcommons2:
-- /usr/share/nginx/NetCommons-2.4.2.0
+- /usr/share/nginx/NetCommons-2.4.2.1
 
 WEKO:
 - /vagrant/vendor/repository

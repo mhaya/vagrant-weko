@@ -1,3 +1,4 @@
+
 remote_file "#{Chef::Config[:file_cache_path]}/#{node['netcommons']['filename']}" do
   source node['netcommons']['remote_uri']
   checksum node[:nc2][:checksum]

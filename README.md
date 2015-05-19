@@ -73,6 +73,10 @@ WEKO関係のパッケージ：
 - pdftk
 - ffmpeg
 
+以下は趣味。不要なら、
+recipe[oaicatmuseum]
+recipe[virtuoso]
+
 tomcat6:
 - /usr/share/tomcat6
 

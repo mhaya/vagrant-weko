@@ -18,10 +18,10 @@ WEKO の実験や開発を行うための環境を素早く構築することを
 
 | software  | version    |
 |-----------|------------|
-|Vagrant    |1.6.3       |
-|VirtualBox |4.3.14r95030|
-|Ruby       |2.1.1p76    |
-|Bundler    |1.6.1       |
+|Vagrant    |1.7.2       |
+|VirtualBox |4.3.28 |
+|Ruby       |2.1.4p265   |
+|Bundler    |1.7.4      |
 
 その他、vagrant sahara pluginをインストールしておくと便利です。
 
@@ -48,22 +48,28 @@ http://weko/nc2
 ## 環境説明
 
 apache2:
+
 - /etc/httpd/conf/httpd.conf
 
 mysql:
+
 - /etc/my.cnf
 
 php:
+
 - /etc/httpd/conf.d/php.ini
 - /etc/php.ini
 
 Netcommons2:
+
 - /usr/share/nginx/NetCommons-2.4.2.1
 
 WEKO:
+
 - /vagrant/vendor/repository
 
 WEKO関係のパッケージ：
+
 - Mroonga
 - poppler
 - wvWare
@@ -73,9 +79,12 @@ WEKO関係のパッケージ：
 - pdftk
 - ffmpeg
 
-以下は趣味。不要なら、
-recipe[oaicatmuseum]
-recipe[virtuoso]
+以下は任意パッケージ。不要なら run_list から除く
+
+- recipe[tomcat]
+- recipe[oaicatmuseum]
+- recipe[virtuoso]
+
 
 tomcat6:
 - /usr/share/tomcat6

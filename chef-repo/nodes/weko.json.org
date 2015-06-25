@@ -32,7 +32,10 @@
 	"recipe[rpmforge]",
 	"recipe[ffmpeg]",
 	"recipe[xlhtml]",
-	"recipe[screen]"
+	"recipe[screen]",
+	"recipe[tomcat]",
+	"recipe[oaicatmuseum]",
+        "recipe[virtuoso]"
     ]
 }
 

@@ -1,7 +1,7 @@
 case node['platform']
 when 'ubuntu'
 default['php']['package']="php5"
-default['php']['install_packages'] = %w[php5-common php5-cli php5-xml]
+default['php']['install_packages'] = %w[php5-common php5-cli php5-xml php-mbstring]
 default['php']['apc']['install_packages'] = %w[php5-apcu php5-gd]
 default['php']['mysql']['install_packages'] = %w[php5-mysql]
 default['php']['php.ini']="/etc/php.ini"

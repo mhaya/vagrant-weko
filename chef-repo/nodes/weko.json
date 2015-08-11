@@ -1,5 +1,6 @@
 {
     "site":{
+	"fqdn":"weko",
 	"hostname":"weko",
 	"port":80,
 	"www_srv":"apache2", 

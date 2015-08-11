@@ -10,6 +10,7 @@ default['site']['www_group']= "apache"
 default['apache2']['httpd.conf'] = "/etc/httpd/conf/httpd.conf"
 default[:apache2][:httpd_conf_dir] = "/etc/httpd/conf.d"
 default['apache2']['httpd.conf_tmpl'] = "httpd.conf.erb"
+default[:site][:fqdn] = "weko"
 end
 
 

@@ -988,7 +988,7 @@ BrowserMatch "^Dreamweaver-WebDAV-SCM1" redirect-carefully
 #
 # Use name-based virtual hosting.
 #
-#NameVirtualHost *:80
+NameVirtualHost *:80
 #
 # NOTE: NameVirtualHost cannot be used without a port specifier 
 # (e.g. :80) if mod_ssl is being used, due to the nature of the
@@ -1001,10 +1001,10 @@ BrowserMatch "^Dreamweaver-WebDAV-SCM1" redirect-carefully
 # The first VirtualHost section is used for requests without a known
 # server name.
 #
-#<VirtualHost *:80>
-#    ServerAdmin webmaster@dummy-host.example.com
-#    DocumentRoot /www/docs/dummy-host.example.com
-#    ServerName dummy-host.example.com
-#    ErrorLog logs/dummy-host.example.com-error_log
-#    CustomLog logs/dummy-host.example.com-access_log common
-#</VirtualHost>
+<VirtualHost *:80>
+    ServerAdmin webmaster@<%= @fqdn %>
+    DocumentRoot /var/www/html
+    ServerName <%= @fqdn %>
+    ErrorLog logs/<%= @fqdn %>-error_log
+    CustomLog logs/<%= @fqdn %>-access_log common
+</VirtualHost>

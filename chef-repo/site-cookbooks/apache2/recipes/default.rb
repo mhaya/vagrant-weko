@@ -4,6 +4,7 @@
 template node['apache2']['httpd.conf'] do
  source "#{node['apache2']['httpd.conf_tmpl']}"
  variables({
+:fqdn => node[:site][:fqdn] 
  })
  mode 0644
  owner "root"

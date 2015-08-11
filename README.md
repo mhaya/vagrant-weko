@@ -1,11 +1,11 @@
 vagrant-weko
 ======
 
-NIIが開発したリポジトリソフトウェア WEKO がインストールされた環境を構築します。
+NIIが開発したリポジトリソフトウェア WEKO をインストールした環境を構築します。
 
-WEKO の実験や開発を行うための環境を素早く構築することを目的としています。
+WEKOを使った実験や開発を行う環境を、手軽に構築することを目的としています。
 
-導入バージョン: weko2.2.0.tar.gz
+導入バージョン: ~~weko2.2.0.tar.gz~~　weko2.1.7.tar.gz
 
 ##必要ソフトウェア
 
@@ -29,21 +29,21 @@ WEKO の実験や開発を行うための環境を素早く構築することを
 
 ##使い方
 
-    git clone https://github.com/mhaya/vagrant-weko.git
-    cd vagrant-weko/
-    bundle install --path vendor/bundle
-    bundle exec knife configure
-    vagrant up
-    vagrant ssh-config --host weko >> ~/.ssh/config
-    cd chef-repo/
-	bundle exec knife solo prepare weko
-    bundle exec knife solo cook weko
+```
+git clone https://github.com/mhaya/vagrant-weko.git
+cd vagrant-weko/
+bundle install --path vendor/bundle
+bundle exec knife configure
+vagrant up
+vagrant ssh-config --host weko >> ~/.ssh/config
+cd chef-repo/
+bundle exec knife solo prepare weko
+bundle exec knife solo cook weko
+```
 
 以上でNC2のインストールまでが完了します。
 
 以下のURLにアクセスし、WEKOモジュールのインストールを行ってください。
-
-あらかじめインストールされているWEKOモジュールのバージョンは 2.2.0 です。
 
 http://weko/nc2
 

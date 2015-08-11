@@ -33,6 +33,7 @@
 	"recipe[ffmpeg]",
 	"recipe[xlhtml]",
 	"recipe[screen]",
+	"recipe[elasticsearch]",
 	"recipe[tomcat]",
 	"recipe[oaicatmuseum]",
 	"recipe[virtuoso]"

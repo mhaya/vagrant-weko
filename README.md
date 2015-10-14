@@ -38,7 +38,7 @@ vagrant up
 vagrant ssh-config --host weko >> ~/.ssh/config
 cd chef-repo/
 bundle exec knife solo prepare weko
-bundle exec knife solo cook weko
+bundle exec knife solo cook weko node/weko.json
 ```
 
 以上でNC2のインストールまでが完了します。
@@ -83,11 +83,12 @@ WEKO関係のパッケージ：
 - pdftk
 - ffmpeg
 
-以下は任意パッケージ。不要なら run_list から除く
+以下はあそび目的のパッケージ。不要なら run_list から除く
 
 - recipe[tomcat]
 - recipe[oaicatmuseum]
 - recipe[virtuoso]
+- recipe[elasticsearch]
 
 
 tomcat6:
@@ -102,3 +103,6 @@ virtuoso-opensource:
 - /usr/local/
 - http://weko:8890/
 
+elasticsearch
+- /usr/local
+- http://weko:9200

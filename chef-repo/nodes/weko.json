@@ -14,7 +14,7 @@
     "nginx":{
 	"enable_php":true
 	},
-    "run_list":[
+    "run_list" :[
 	"recipe[site]",
         "recipe[localedef]",
 	"recipe[apache2]",

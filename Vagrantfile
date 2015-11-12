@@ -8,6 +8,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.boot_timeout = 120
   config.vm.box = "centos"  
   config.vm.box_url = "https://googledrive.com/host/0B2JacpSnObRwaExDNUVOYUcyYWM/centos.box"
+  config.ssh.insert_key = true
 
   if Vagrant.has_plugin?("vagrant-cachier")
     config.cache.scope = :box

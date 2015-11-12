@@ -10,13 +10,14 @@
 
 # test : bundle exec knife solo cook weko -W -o elasticsearch::default
 
+# 必要パッケージのインストール
 node[:elasticsearch][:pkgs].each do |pkg|
   package "#{pkg}" do
     action :install
   end
 end
 
-# download 
+# elasticsearchのダウンロード
 remote_file "#{node[:elasticsearch][:filename]}" do
   source node[:elasticsearch][:remote_uri]
   path "#{Chef::Config[:file_cache_path]}/#{node[:elasticsearch][:filename]}"
@@ -24,7 +25,7 @@ remote_file "#{node[:elasticsearch][:filename]}" do
   action :create
 end
 
-# unpack
+# パッケージの展開
 script "unpack_#{node[:elasticsearch][:filename]}" do
   interpreter "bash"
   user "root"
@@ -34,7 +35,7 @@ script "unpack_#{node[:elasticsearch][:filename]}" do
   EOL
 end
 
-# download
+# elasticsearch service wrapperのダウンロード
 remote_file "#{Chef::Config[:file_cache_path]}/#{node[:elasticsearch_srv][:filename]}" do
   source "#{node[:elasticsearch_srv][:remote_uri]}"
   path "#{Chef::Config[:file_cache_path]}/#{node[:elasticsearch_srv][:filename]}"
@@ -42,7 +43,7 @@ remote_file "#{Chef::Config[:file_cache_path]}/#{node[:elasticsearch_srv][:filen
   action :create
 end
 
-# unpack
+# service wrapperの展開
 script "unpack_#{node[:elasticsearch_srv][:filename]}" do
   not_if {File.exists?("#{node[:elasticsearch_srv][:install_dir]}/elasticsearch-servicewrapper-master")}
   interpreter "bash"
@@ -53,7 +54,7 @@ script "unpack_#{node[:elasticsearch_srv][:filename]}" do
   EOL
 end
 
-#install service
+#service wrapperのインストール
 script "install_#{node[:elasticsearch_srv][:filename]}" do
   not_if {File.exists?("/etc/init.d/elasticsearch")}
   interpreter "bash"

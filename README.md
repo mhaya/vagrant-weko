@@ -5,7 +5,7 @@ NIIが開発したリポジトリソフトウェア WEKO をインストール�
 
 WEKOを使った実験や開発を行う環境を、手軽に構築することを目的としています。
 
-導入バージョン: ~~weko2.2.0.tar.gz~~　weko2.1.7.tar.gz
+導入バージョン: weko2.2.3.tar.gz
 
 ##必要ソフトウェア
 
@@ -38,7 +38,7 @@ vagrant up
 vagrant ssh-config --host weko >> ~/.ssh/config
 cd chef-repo/
 bundle exec knife solo prepare weko
-bundle exec knife solo cook weko node/weko.json
+bundle exec knife solo cook weko nodes/weko.json
 ```
 
 以上でNC2のインストールまでが完了します。

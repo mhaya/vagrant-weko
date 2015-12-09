@@ -20,12 +20,18 @@ WEKOを使った実験や開発を行う環境を、手軽に構築すること�
 
 | software  | version    |
 |-----------|------------|
-|Vagrant    |1.7.2       |
-|VirtualBox |4.3.28 |
-|Ruby       |2.1.4p265   |
-|Bundler    |1.7.4      |
+|Vagrant    |1.7.4       |
+|VirtualBox |5.0.10 |
+|Ruby       |2.1.5p273   |
+|Bundler    |1.10.6      |
 
-その他、vagrant sahara pluginをインストールしておくと便利です。
+あるとよいvagrant plugin
+
+vagrant plugin install vagrant-cachier
+vagrant plugin install sahara
+vagrant plugin install vagrant-hostsupdater
+
+
 
 ##使い方
 

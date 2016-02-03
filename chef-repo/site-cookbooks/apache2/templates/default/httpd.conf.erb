@@ -1007,4 +1007,8 @@ NameVirtualHost *:80
     ServerName <%= @fqdn %>
     ErrorLog logs/<%= @fqdn %>-error_log
     CustomLog logs/<%= @fqdn %>-access_log common
+    <IfModule rewrite_module>
+        RewriteLog logs/<%= @fqdn %>-rewrite.log
+        RewriteLogLevel 9
+    </IfModule>
 </VirtualHost>

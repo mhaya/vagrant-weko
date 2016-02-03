@@ -35,7 +35,6 @@
 	"recipe[ffmpeg]",
 	"recipe[xlhtml]",
 	"recipe[screen]",
-	"recipe[elasticsearch]"
     ]
 }
 

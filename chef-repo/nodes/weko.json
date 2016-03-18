@@ -34,7 +34,7 @@
 	"recipe[rpmforge]",
 	"recipe[ffmpeg]",
 	"recipe[xlhtml]",
-	"recipe[screen]",
+	"recipe[screen]"
     ]
 }
 

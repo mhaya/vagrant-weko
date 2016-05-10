@@ -5,6 +5,8 @@ vagrant-weko
 
 Vagrant and VirtualBox can be used to quickly build or rebuild virtual servers.
 
+WEKO is a repository module that operates on. NetCommons2 developed by NII. 
+
 This Vagrant profile installs WEKO on CentOS7 using the Ansible provisioner.
 
 #Getting Started
@@ -23,4 +25,5 @@ vargant up
 - [VirtualBox](https://www.virtualbox.org/)
 - [Vagrant](https://www.vagrantup.com/)
 - [Ansible](https://github.com/ansible/ansible)
+- [NetCommons2](http://www.netcommons.org/)
 - [WEKO](http://weko.at.nii.ac.jp/)

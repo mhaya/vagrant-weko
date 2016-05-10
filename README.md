@@ -1,21 +1,25 @@
 vagrant-weko
 ======
 
-NIIが開発したリポジトリソフトウェア WEKO をインストールした環境を構築します。
+#Background
 
-WEKOを使った実験や開発を行う環境を、手軽に構築することを目的としています。
+Vagrant and VirtualBox can be used to quickly build or rebuild virtual servers.
 
-導入バージョン: weko 2.2.3
+This Vagrant profile installs WEKO on CentOS7 using the Ansible provisioner.
 
-##必要ソフトウェア
+#Getting Started
 
-- Virtualbox
- - https://www.virtualbox.org/wiki/Downloads
-- Vagrant
- - http://www.vagrantup.com/downloads.html
-- ansible
- - https://github.com/ansible/ansible
+1. Download and Install VirtualBox (Version 5.0.20 or later)
+2. Download and Install Vagrant (Version 1.8.1 or later)
+3. Install Ansible (Version 2.2.0 or later)
+4. Open a shell prompt and cd into the folder containing the Vagrantfile
+5. Run the following command:
 
+```
+vargant up
+```
 
-- ansible 2.2.0
-
+#References
+- https://www.virtualbox.org/
+- https://www.vagrantup.com/
+- https://github.com/ansible/ansible

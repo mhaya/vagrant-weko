@@ -20,6 +20,7 @@ vargant up
 ```
 
 #References
-- https://www.virtualbox.org/
-- https://www.vagrantup.com/
-- https://github.com/ansible/ansible
+- [VirtualBox](https://www.virtualbox.org/)
+- [Vagrant](https://www.vagrantup.com/)
+- [Ansible](https://github.com/ansible/ansible)
+- [WEKO](http://weko.at.nii.ac.jp/)

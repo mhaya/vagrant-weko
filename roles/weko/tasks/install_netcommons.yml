@@ -1,0 +1,40 @@
+# Install NetCommons2
+
+- name: check installed NetCommons
+  stat: path=/var/www/html/nc2
+  register: is_netcommons
+
+- name: Download latest NetCommons2
+  get_url: url="http://www.netcommons.org/%E3%83%80%E3%82%A6%E3%83%B3%E3%83%AD%E3%83%BC%E3%83%89/%E3%82%B3%E3%82%A2%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8/?action=cabinet_action_main_download&block_id=93&room_id=1&cabinet_id=1&file_id=2811&upload_id=6210" dest=/tmp/netcommons-2.4.2.1.tar.gz
+  register: downloaded_netcommons
+  when: is_netcommons.stat.exists==False
+
+- name: Extract NetCommons2
+  command: tar zxvf /tmp/netcommons-2.4.2.1.tar.gz -C /tmp/
+  when:
+    - downloaded_netcommons|succeeded
+    - is_netcommons.stat.exists==False
+  register: extracted_netcommons
+
+- name: Copy to the web application directory
+  command: cp -rp /tmp/NetCommons-2.4.2.1/html /var/www/html/nc2
+  when:
+    - extracted_netcommons|succeeded
+    - is_netcommons.stat.exists==False
+  register: copied_netcommons
+
+- name: Change ownership
+  file: path=/var/www/html/nc2 state=directory owner=apache group=apache
+  when:
+   - copied_netcommons|succeeded
+   - is_netcommons.stat.exists==False
+
+- name: Modify httpd.conf
+  template:
+    src: templates/httpd.conf
+    dest: /etc/httpd/conf/httpd.conf
+    owner: root
+    mode: 0644
+  notify: restart httpd
+
+

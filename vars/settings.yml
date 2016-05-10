@@ -1,0 +1,8 @@
+mariadb_root_password: "r00tR00t!"
+nc2user_password: "nc2pass"
+
+php_memory_limit: -1
+php_post_max_size: 512M
+php_upload_max_filesize: 256M
+
+timezone: "Asia/Tokyo"

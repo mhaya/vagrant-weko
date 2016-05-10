@@ -7,9 +7,10 @@
 	"www_root":"/var/www/html", 
 	"www_user":"apache",
 	"www_group":"apache",
-	"nc2_install":"/var/www",
-	"mysql_cmd":"/opt/rh/mysql55/root/usr/bin/mysql",
-	"mysqladmin_cmd":"/opt/rh/mysql55/root/usr/bin/mysqladmin"
+	"nc2_install":"/var/www"
+    },
+    "mysql":{
+	"mysql_cmd": "/usr/bin/mysql"
     },
     "nginx":{
 	"enable_php":true
@@ -29,10 +30,10 @@
 	"recipe[weko]",
 	"recipe[wvWare]",
 	"recipe[ImageMagick]",
-	"recipe[poppler]",
-	"recipe[pdftk]",
 	"recipe[rpmforge]",
 	"recipe[ffmpeg]",
+	"recipe[poppler]",
+	"recipe[pdftk]",
 	"recipe[xlhtml]",
 	"recipe[screen]"
     ]

@@ -9,10 +9,15 @@
 # All rights reserved - Do Not Redistribute
 #
 
-# Software Collectionのインストール
-package "SCL" do
-  package_name node[:mroonga][:scl_pkg]
-  action :install
+case node[:platform]
+when "centos"
+    if node["platform_version"].to_i == 6
+      # Software Collectionのインストール
+      package "SCL" do
+        package_name node[:mroonga][:scl_pkg]
+        action :install
+      end
+    end
 end
 
 # groongaのインストール

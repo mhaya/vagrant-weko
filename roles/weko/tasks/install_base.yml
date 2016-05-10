@@ -1,0 +1,17 @@
+- name: libselinux-python install
+  yum: name=libselinux-python state=present
+
+- name: MySQL-python install
+  yum: name=MySQL-python state=present
+
+- name: install base
+  yum: name={{ item }} state=present
+  with_items:
+    - wget
+    - unzip
+    - git
+
+- name: selinux permissive 
+  selinux: policy=targeted state=permissive
+
+

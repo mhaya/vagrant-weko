@@ -1,0 +1,14 @@
+- name: install gronnga
+  yum: name=http://packages.groonga.org/centos/groonga-release-1.1.0-1.noarch.rpm state=present
+
+- name: sudo yum makecache
+  command: yum makecache
+
+- name: install mariadb-mroonga
+  yum: name=mariadb-mroonga state=present
+
+- name: install groonga-tokenizer-mecab
+  yum: name=groonga-tokenizer-mecab state=present
+  notify: restart mariadb
+
+

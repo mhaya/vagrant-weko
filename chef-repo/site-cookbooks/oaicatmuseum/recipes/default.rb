@@ -35,13 +35,13 @@ end
 # ここまで
 
 execute "create_oaicatmuseum_db" do
-  command "#{node['site']['mysqladmin_cmd']} -u root create oaicatdb"  
-  not_if "#{node['site']['mysql_cmd']} -u root -D oaicatdb"
+  command "#{node['mysql']['mysqladmin_cmd']} -u root create oaicatdb"  
+  not_if "#{node['mysql']['mysql_cmd']} -u root -D oaicatdb"
 #  notifies :run, 'execute[create_oaicatmuseum_table]', :immediately
 end
 
 execute "create_oaicatmuseum_table" do
-  command "#{node['site']['mysql_cmd']} -u root oaicatdb < #{Chef::Config[:file_cache_path]}/#{node[:oaicatmuseum][:file2]}"
+  command "#{node['mysql']['mysql_cmd']} -u root oaicatdb < #{Chef::Config[:file_cache_path]}/#{node[:oaicatmuseum][:file2]}"
 #  action :nothing
 end
 
@@ -54,7 +54,7 @@ template "#{Chef::Config[:file_cache_path]}/create_oaicatmuseum_user.sql" do
 end
 
 execute "create_oaicatmuseum_dbuser" do
-  command "#{node['site']['mysql_cmd']} -u root < #{Chef::Config[:file_cache_path]}/create_oaicatmuseum_user.sql;sleep 120"
+  command "#{node['mysql']['mysql_cmd']} -u root < #{Chef::Config[:file_cache_path]}/create_oaicatmuseum_user.sql;sleep 120"
 #  action :nothing
 end
 

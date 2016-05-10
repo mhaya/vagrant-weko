@@ -1,0 +1,19 @@
+- name: install subversion
+  yum: name=subversion state=present
+
+
+- name: check installed weko
+  stat: path=/root/repository
+  register: is_weko
+
+- name: checkout weko
+  command: svn co http://forge.at.nii.ac.jp/svn/nc/repository/trunk repository chdir=/root
+  register: checkedout_weko
+  when:
+    - is_weko.stat.exists==False
+
+- name: copy weko
+  command: cp -rp /root/repository /var/www/html/nc2/webapp/modules/
+  when:
+    - checkedout_weko|succeeded
+    - is_weko.stat.exists==False

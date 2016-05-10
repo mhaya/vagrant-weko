@@ -6,6 +6,7 @@ default['netcommons']['dir'] = "#{node['site']['nc2_install']}/NetCommons-2.4.2.
 default['netcommons']['home'] = "#{node['netcommons']['dir']}/html/htdocs"
 default[:nc2][:module_dir] = "#{node['netcommons']['dir']}/html/webapp/modules"
 
+
 #case node["platform"]
 #when "ubuntu"
 #default['netcommons']['username'] = "www-data"

@@ -1,5 +1,5 @@
-- name: install subversion
-  yum: name=subversion state=present
+- name: install git 
+  yum: name=git state=present
 
 
 - name: check installed weko
@@ -7,7 +7,7 @@
   register: is_weko
 
 - name: checkout weko
-  command: svn co http://forge.at.nii.ac.jp/svn/nc/repository/trunk repository chdir=/root
+  command: git clone https://bitbucket.org/niijp/weko.git repository chdir=/root
   register: checkedout_weko
   when:
     - is_weko.stat.exists==False

@@ -15,7 +15,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 
   config.vm.define :weko do |weko|
-    weko.vm.hostname = "weko"
+    weko.vm.hostname = "weko.example.org"
     weko.vm.network :private_network, ip: "192.168.111.10"
   end
 
@@ -28,6 +28,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     ansible.playbook = "site.yml"
     ansible.limit = "all"  
   end
+
+  config.vm.provision "shell", run: "always", inline: "systemctl restart network.service"
 
 #  config.vm.provider "virtualbox" do |vb|
 #  	# Use VBoxManage to customize the VM. For example to change memory:

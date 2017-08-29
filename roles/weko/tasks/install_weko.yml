@@ -2,7 +2,7 @@
   yum: name=git state=present
 
 
-- name: check installed weko
+- name: check cloned weko
   stat: path=/root/repository
   register: is_weko
 
@@ -17,3 +17,12 @@
   when:
     - checkedout_weko|succeeded
     - is_weko.stat.exists==False
+
+- name: check installed weko
+  stat: path=/var/www/html/nc2/webapp/modules/repository
+  register: installed_weko
+
+- name: chown weko
+  file: path=/var/www/html/nc2/webapp/modules/repository owner=apache group=apache
+  when:
+    - installed_weko.stat.exists==True

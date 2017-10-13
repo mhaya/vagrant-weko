@@ -15,8 +15,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 
   config.vm.define :weko do |weko|
-    weko.vm.hostname = "weko.example.org"
-    weko.vm.network :private_network, ip: "192.168.111.10"
+    weko.vm.hostname = "weko.sheepcloud.org"
+    weko.vm.network :private_network, ip: "172.16.111.40"
   end
 
   #
@@ -24,9 +24,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   #
   config.vm.provision "ansible" do |ansible|
     ansible.verbose = "vvv"
-    ansible.ask_sudo_pass = false 
+    ansible.ask_become_pass = false 
     ansible.playbook = "site.yml"
-    ansible.limit = "all"  
+    ansible.limit = "all"
   end
 
   config.vm.provision "shell", run: "always", inline: "systemctl restart network.service"

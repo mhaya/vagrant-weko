@@ -1,0 +1,27 @@
+- name: install php package
+  yum: name={{ item }} state=present
+  with_items: 
+    - glib2-devel
+    - libgsf
+    - libgsf-devel
+    - gcc
+    - gcc-c++
+    - elinks
+
+- name: copy wv-1.2.4.tar.gz
+  copy:
+    src: files/wv-1.2.4.tar.gz
+    dest: /tmp/wv-1.2.4.tar.gz
+
+- name: expand wv
+  command: tar zxvf wv-1.2.4.tar.gz chdir=/tmp
+
+- name: configure wv
+  command: ./configure chdir=/tmp/wv-1.2.4
+
+- name: make wv
+  command: make chdir=/tmp/wv-1.2.4
+
+- name: install wv
+  command: make install chdir=/tmp/wv-1.2.4
+

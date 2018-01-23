@@ -3,11 +3,12 @@
 
 VAGRANTFILE_API_VERSION = "2"
 
+
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   
   config.vm.boot_timeout = 360 
-  config.vm.box = "centos7"  
-  config.vm.box_url = "https://googledrive.com/host/0B2JacpSnObRwaExDNUVOYUcyYWM/centos7.box"
+  config.vm.box = "centos/7"  
+  #config.vm.box_url = "https://googledrive.com/host/0B2JacpSnObRwaExDNUVOYUcyYWM/centos7.box"
   config.ssh.insert_key = true
 
   if Vagrant.has_plugin?("vagrant-cachier")

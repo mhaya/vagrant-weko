@@ -11,8 +11,8 @@
     - unzip
     - git
 
-- name: reinstall glibc-common 
-  command: sudo yum reinstall -y glibc-common
+- name: reinstall glibc-common
+  shell: yum -y reinstall glibc-common
 
 - name: selinux permissive 
   selinux: policy=targeted state=permissive

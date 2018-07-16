@@ -1,7 +1,7 @@
 vagrant-weko
 ======
 
-#Background
+# Background
 
 Vagrant and VirtualBox can be used to quickly build or rebuild virtual servers.
 
@@ -17,12 +17,14 @@ This Vagrant profile installs WEKO on CentOS7 using the Ansible provisioner.
 4. Open a shell prompt and change current directory the folder containing the Vagrantfile
 5. Run ```vargant up```
 6. Open a web browser and access to https://{weko.vm.hostname}
-7. Setting general parameter as you want, but the following parameter as the following 
+7. Start installation of NetCommons2. In installation process, set general parameters as you want, but the following parameter as the following 
  - database Username: nc2user
  - database Password: nc2pass
  - database Name : nc2db
 
-#References
+**In order to avoid WEKO installtion problems, after installation of NetCommons2, please reinstall WEKO module**
+
+# References
 - [VirtualBox](https://www.virtualbox.org/)
 - [Vagrant](https://www.vagrantup.com/)
 - [Ansible](https://github.com/ansible/ansible)

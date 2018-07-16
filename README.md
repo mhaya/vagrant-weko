@@ -9,17 +9,18 @@ WEKO is a repository module that operates on. NetCommons2 developed by NII.
 
 This Vagrant profile installs WEKO on CentOS7 using the Ansible provisioner.
 
-#Getting Started
+# Getting Started
 
-1. Download and Install VirtualBox (Version 5.0.20 or later)
-2. Download and Install Vagrant (Version 1.8.1 or later)
+1. Install VirtualBox (Version 5.0.20 or later)
+2. Install Vagrant (Version 1.8.1 or later)
 3. Install Ansible (Version 2.2.0 or later)
-4. Open a shell prompt and cd into the folder containing the Vagrantfile
-5. Run the following command:
-
-```
-vargant up
-```
+4. Open a shell prompt and change current directory the folder containing the Vagrantfile
+5. Run ```vargant up```
+6. Open a web browser and access to https://{weko.vm.hostname}
+7. Setting general parameter as you want, but the following parameter as the following 
+ - database Username: nc2user
+ - database Password: nc2pass
+ - database Name : nc2db
 
 #References
 - [VirtualBox](https://www.virtualbox.org/)
@@ -27,3 +28,4 @@ vargant up
 - [Ansible](https://github.com/ansible/ansible)
 - [NetCommons2](http://www.netcommons.org/)
 - [WEKO](http://weko.at.nii.ac.jp/)
+- [WEKO Installation Manual:CentOS 7 with MariaDB](https://meatwiki.nii.ac.jp/confluence/display/WEKO/CentOS+7+with+MariaDB)

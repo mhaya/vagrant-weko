@@ -1,3 +1,6 @@
+- name: upgrade all packages
+  yum: name=* state=latest
+
 - name: libselinux-python install
   yum: name=libselinux-python state=present
 

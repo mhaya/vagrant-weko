@@ -12,21 +12,21 @@
 - name: Extract NetCommons2
   command: tar zxvf /tmp/netcommons-2.4.2.1.tar.gz -C /tmp/
   when:
-    - downloaded_netcommons|succeeded
+    - downloaded_netcommons is succeeded
     - is_netcommons.stat.exists==False
   register: extracted_netcommons
 
 - name: Copy to the web application directory
   command: cp -rp /tmp/NetCommons-2.4.2.1/html /var/www/html/nc2
   when:
-    - extracted_netcommons|succeeded
+    - extracted_netcommons is succeeded
     - is_netcommons.stat.exists==False
   register: copied_netcommons
 
 - name: Change ownership
   file: path=/var/www/html/nc2 state=directory owner=apache group=apache
   when:
-   - copied_netcommons|succeeded
+   - copied_netcommons is succeeded
    - is_netcommons.stat.exists==False
 
 - name: Modify httpd.conf

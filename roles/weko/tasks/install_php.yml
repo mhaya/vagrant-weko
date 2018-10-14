@@ -2,8 +2,16 @@
   yum: name=php state=present
 
 - name: install php package
-  yum: name={{ item }} state=present
-  with_items: '{{php_packages}}'
+  yum: 
+    name:
+      - php-cli
+      - php-pear
+      - php-common
+      - php-gd
+      - php-mbstring
+      - php-pdo
+      - php-mysql
+    state: present
 
 - name: install php.ini
   template:

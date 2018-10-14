@@ -5,18 +5,18 @@
 - name: start mariadb Server
   service: name=mariadb state=started enabled=yes
   register: started_mariadb
-  when: installed_mariadb|succeeded
+  when: installed_mariadb is succeeded
 
 #- name: Create root user password
 #  command: mysqladmin -u root password '{{ mariadb_root_password }}'
-#  when: started_mariadb|succeeded
+#  when: started_mariadb is succeeded
 
 - name: Change root user password
   mysql_user:
     name: root
     host: localhost
     password: '{{ mariadb_root_password }}'
-  when: started_mariadb|succeeded
+  when: started_mariadb is succeeded
 
 - name: install .my.cnf
   template:

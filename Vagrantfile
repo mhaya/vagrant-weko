@@ -24,6 +24,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     ansible.ask_become_pass = false 
     ansible.playbook = "site.yml"
     ansible.limit = "all"
+    #ansible.raw_arguments = ['--check']
   end
 
   $script = <<-SCRIPT

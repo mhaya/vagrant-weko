@@ -1,12 +1,13 @@
 - name: install php package
-  yum: name={{ item }} state=present
-  with_items: 
-    - glib2-devel
-    - libgsf
-    - libgsf-devel
-    - gcc
-    - gcc-c++
-    - elinks
+  yum:
+    name: 
+      - glib2-devel
+      - libgsf
+      - libgsf-devel
+      - gcc
+      - gcc-c++
+      - elinks
+    state: present
 
 - name: copy wv-1.2.4.tar.gz
   copy:

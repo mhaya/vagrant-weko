@@ -15,13 +15,13 @@
 - name: copy weko
   command: cp -rp /root/repository /var/www/html/nc2/webapp/modules/
   when:
-    - checkedout_weko|succeeded
+    - checkedout_weko is succeeded
     - is_weko.stat.exists==False
 
 - name: chown weko
   command: chown -R apache:apache /var/www/html/nc2/webapp/modules/repository
   when:
-    - checkedout_weko|succeeded
+    - checkedout_weko is succeeded
     - is_weko.stat.exists==False
 
 

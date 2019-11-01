@@ -1,8 +1,0 @@
-- hosts: weko
-  become: yes
-  user: vagrant
-  vars_files:
-    - vars/packages.yml
-    - vars/settings.yml
-  roles:
-    - weko

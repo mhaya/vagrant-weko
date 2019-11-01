@@ -1,2 +1,0 @@
-- name: install poppler-utils
-  yum: name=poppler-utils state=present

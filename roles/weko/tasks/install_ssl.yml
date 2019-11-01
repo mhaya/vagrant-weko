@@ -1,3 +1,0 @@
-- name: install Apache HTTP Server
-  yum: name=mod_ssl state=present
-

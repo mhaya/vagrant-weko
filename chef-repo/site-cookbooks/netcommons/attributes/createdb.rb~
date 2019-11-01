@@ -1,5 +1,0 @@
-node['netcommons']['dbname'] = "nc2"
-node['netcommons']['dbuser'] = "nc2user"
-node['netcommons']['dbpass'] = "nc2p@ss!"
-
-

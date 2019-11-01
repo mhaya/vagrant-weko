@@ -1,8 +1,0 @@
-# Create database for WEKO
-
-- name: Create database for WEKO.
-  mysql_db: name=nc2db encoding=utf8 state=present
-
-- name: Create an database user and assign the privilege to the previously created db.
-  mysql_user: name=nc2user password='{{nc2user_password}}' priv=nc2db.*:ALL state=present
-

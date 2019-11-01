@@ -1,7 +1,0 @@
-default['hostname']="localhost"
-default['port']=80
-default['www_srv']="apache2"
-default['www_root']="/var/www/html"
-default['www_user']="apache"
-default['www_group']="apache"
-default['nc2_install']="/var/www" 

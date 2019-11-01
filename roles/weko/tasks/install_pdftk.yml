@@ -1,2 +1,0 @@
-- name: install pdftk 
-  yum: name=pdftk state=present

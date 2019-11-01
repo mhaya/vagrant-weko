@@ -1,3 +1,0 @@
-- name: install ffmpeg
-  yum: name=ffmpeg state=present
-

@@ -1,4 +1,0 @@
-- name: install xlhtml 
-  yum: name=http://repo.iotti.biz/CentOS/6/x86_64/xlhtml-0.5-17.el6.lux.1.x86_64.rpm state=present
-
-

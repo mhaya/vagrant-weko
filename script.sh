@@ -9,7 +9,7 @@ sudo sed -i -e "s/^SELINUX=enforcing$/SELINUX=disabled/g" /etc/selinux/config
 
 # https://docs.docker.com/install/linux/docker-ce/centos/
 sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
-sudo yum install docker-ce docker-ce-cli containerd.io
+sudo yum -y install docker-ce docker-ce-cli containerd.io
 sudo systemctl enable docker
 sudo systemctl start docker
 
@@ -22,4 +22,6 @@ sudo chgrp docker /usr/local/bin/docker-compose
 
 sudo yum -y install git
 git clone https://github.com/RCOSDP/weko.git
+cd weko
+git checkout origin/feature/nii_release
 

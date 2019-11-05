@@ -16,16 +16,20 @@
 - name: start WEKO3 build
   when: gitclone.changed  
   shell: |
-    cd /home/vagrant/weko
+    cd /home/vagrant/weko/;
     docker-compose build
+  args:
+    chdir: /home/vagrant/weko
   register: weko3_built
 
 #- debug: var=weko3_built
 
 - name: start WEKO3 service 
   shell: |
-    cd /home/vagrant/weko
+    cd /home/vagrant/weko;
     docker-compose up -d
+  args:
+    chdir: /home/vagrant/weko
   register: weko3_started
 
 #- debug: var=weko3_started

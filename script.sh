@@ -24,4 +24,6 @@ sudo yum -y install git
 git clone https://github.com/RCOSDP/weko.git
 cd weko
 git checkout origin/feature/nii_release
+sudo reboot
+
 

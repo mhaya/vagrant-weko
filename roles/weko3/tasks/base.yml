@@ -1,0 +1,10 @@
+- name: install base packages
+  yum:
+    name: "{{ packages }}"
+  vars:
+    packages:
+      - git
+  become: true
+
+
+

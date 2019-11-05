@@ -1,0 +1,10 @@
+- name: install base packages
+  yum:
+    name: "{{ packages }}"
+  vars:
+    packages:
+      - yum-utils
+      - device-mapper-persistent-data
+      - lvm2
+  become: true
+

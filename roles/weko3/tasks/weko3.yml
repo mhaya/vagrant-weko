@@ -1,0 +1,56 @@
+- name: directory check
+  stat:
+    path: /home/vagrant/weko
+  register: d
+
+- name: check out WEKO3
+  when: not d.stat.exists
+  git:
+    repo: 'https://github.com/RCOSDP/weko.git'
+    dest: /home/vagrant/weko
+    version: feature/nii_release
+  register: gitclone
+
+#- debug: var=gitclone
+
+- name: start WEKO3 build
+  when: gitclone.changed  
+  shell: |
+    cd /home/vagrant/weko
+    docker-compose build
+  register: weko3_built
+
+#- debug: var=weko3_built
+
+- name: start WEKO3 service 
+  shell: |
+    cd /home/vagrant/weko
+    docker-compose up -d
+  register: weko3_started
+
+#- debug: var=weko3_started
+
+- name: check WEKO3 service
+  uri:
+    url: https://localhost/
+    return_content: yes
+    validate_certs: no
+    status_code: [502,200]
+  register: weko3_api_result
+
+#- debug: var=weko3_api_result.status
+
+- name: init WEKO3
+  when: weko3_api_result.status == 502
+  shell: |
+    docker-compose exec web ./scripts/populate-instance.sh
+    docker cp scripts/demo/item_type.sql $(docker-compose ps -q postgresql):/tmp/
+    docker-compose exec postgresql psql -U invenio invenio  -f /tmp/item_type.sql
+    docker-compose exec web invenio workflow init action_status,Action
+  args:
+    chdir: /home/vagrant/weko
+  register: init_weko3
+
+- debug: var=init_weko3  
+
+

@@ -1,0 +1,23 @@
+- name: install libselinux-python
+  yum: name=libselinux-python state=installed
+
+- name: disable selinux
+  selinux: state=disabled
+  become: true
+  register: selinux
+
+
+- name: reboot machine
+  shell: "sleep 2 && reboot"
+  async: 1
+  poll: 0
+  when: selinux.reboot_required
+  become: True
+
+- name: wait for restarting machine 
+  local_action: wait_for host={{ inventory_hostname }} port=22 delay=30 timeout=300
+  when: selinux.reboot_required
+  become: False
+
+-
+

@@ -1,0 +1,9 @@
+- hosts: all
+  roles:
+    - role: selinux-disabler
+    - role: docker
+    - role: python
+    - role: weko3
+
+
+

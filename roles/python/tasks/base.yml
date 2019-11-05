@@ -1,0 +1,35 @@
+- name: install base packages
+  yum:
+    name: "{{ packages }}"
+  vars:
+    packages:
+      - epel-release
+      - python-devel
+      - openssl-devel
+      - gcc
+  become: true
+
+- name: install python-pip
+  yum:
+    name: "{{ packages }}"
+  vars:
+    packages:
+      - python-pip
+    enablerepo: epel
+  become: true
+
+- name: update pip 
+  pip:
+    name: 
+      - pip
+    state: latest
+  become: true
+
+- name: install pip package 
+  pip:
+    name: 
+      - docker
+      - docker-compose
+    state: latest
+  become: true
+

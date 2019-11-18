@@ -23,7 +23,7 @@ end
 Vagrant.configure("2") do |config|
   config.vm.box = "centos/7"
   config.vm.network "private_network", ip: "192.168.33.10"
-  config.vm.hostname = "weko3.example.org"
+  #config.vm.hostname = "weko3.example.org"
   #config.disksize.size = "100GB"
   
   config.vm.provider "virtualbox" do |vb|

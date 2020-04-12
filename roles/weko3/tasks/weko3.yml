@@ -1,13 +1,13 @@
 - name: directory check
   stat:
-    path: /home/vagrant/weko
+    path: /vagrant/weko
   register: d
 
 - name: check out WEKO3
   when: not d.stat.exists
   git:
     repo: 'https://github.com/RCOSDP/weko.git'
-    dest: /home/vagrant/weko
+    dest: /vagrant/weko
     version: develop
   register: gitclone
 
@@ -16,7 +16,7 @@
 - name: start WEKO3 build
   when: gitclone.changed  
   shell: |
-    cd /home/vagrant/weko/;
+    cd /vagrant/weko/;
     docker-compose build
   args:
     chdir: /home/vagrant/weko
@@ -26,7 +26,7 @@
 
 - name: start WEKO3 service 
   shell: |
-    cd /home/vagrant/weko;
+    cd /vagrant/weko;
     docker-compose up -d
   args:
     chdir: /home/vagrant/weko
@@ -52,7 +52,7 @@
     docker-compose exec postgresql psql -U invenio invenio  -f /tmp/item_type.sql
     docker-compose exec web invenio workflow init action_status,Action
   args:
-    chdir: /home/vagrant/weko
+    chdir: /vagrant/weko
   register: init_weko3
 
 - debug: var=init_weko3  

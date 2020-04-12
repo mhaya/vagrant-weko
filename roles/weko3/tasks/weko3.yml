@@ -8,7 +8,7 @@
   git:
     repo: 'https://github.com/RCOSDP/weko.git'
     dest: /home/vagrant/weko
-    version: feature/nii_release
+    version: develop
   register: gitclone
 
 #- debug: var=gitclone

@@ -23,7 +23,7 @@ sudo chgrp docker /usr/local/bin/docker-compose
 sudo yum -y install git
 git clone https://github.com/RCOSDP/weko.git
 cd weko
-git checkout origin/feature/nii_release
+git checkout origin/develop
 sudo reboot
 
 

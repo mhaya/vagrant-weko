@@ -6,3 +6,4 @@ vendor
 *.lock
 tmp/
 .DS_Store
+weko/

@@ -26,6 +26,14 @@ Vagrant.configure("2") do |config|
   #config.vm.hostname = "weko3.example.org"
   #config.disksize.size = "100GB"
 
+
+  config.vm.synced_folder ".", "/vagrant", type: "virtualbox"
+
+  if Vagrant.has_plugin?("vagrant-vbguest")
+    # set auto_update to false, if you do NOT want to check the correct
+    config.vbguest.auto_update = true
+  end
+
   config.vm.network "forwarded_port", guest: 80, host: 8080, host_ip: "127.0.0.1"
   config.vm.network "forwarded_port", guest: 443, host: 8443, host_ip: "127.0.0.1"
   

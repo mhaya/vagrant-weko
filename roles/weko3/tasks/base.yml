@@ -4,6 +4,10 @@
   vars:
     packages:
       - git
+      - kernel-devel
+      - kernel-headers
+      - gcc
+      - gcc-c++
   become: true
 
 

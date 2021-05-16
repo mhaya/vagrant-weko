@@ -1,0 +1,18 @@
+- name: Check disk size
+  become: yes
+  shell: |
+    df -h /dev/mapper/vgvagrant-root | awk '{print $2}'|grep -v 'Size'
+  register: disk_size
+
+- name: Extend disk size
+  when: disk_size != "196G"
+  become: yes
+  shell: |
+    parted -s /dev/sda resizepart 2 100%
+    parted -s /dev/sda resizepart 5 100%
+    pvresize /dev/sda5
+    lvextend -l +100%FREE /dev/mapper/vgvagrant-root
+    resize2fs /dev/mapper/vgvagrant-root
+
+
+

@@ -3,7 +3,7 @@ Vagrant.configure("2") do |config|
   config.vm.define :weko3_a do | weko3_a |
     weko3_a.vm.network "private_network", ip: "192.168.10.10", virtualbox__intnet: "intnet"
     #config.vm.hostname = "weko3.example.org"
-    weko3_a.disksize.size = "300GB"
+    weko3_a.disksize.size = "200GB"
 
     weko3_a.vm.synced_folder ".", "/vagrant", type: "virtualbox"
 
@@ -36,7 +36,7 @@ Vagrant.configure("2") do |config|
   config.vm.define :weko3_b do | weko3_b |
     weko3_b.vm.network "private_network", ip: "192.168.10.11", virtualbox__intnet: "intnet"
     #config.vm.hostname = "weko3.example.org"
-    weko3_b.disksize.size = "300GB"
+    weko3_b.disksize.size = "200GB"
 
 
     config.vm.synced_folder ".", "/vagrant", type: "virtualbox"

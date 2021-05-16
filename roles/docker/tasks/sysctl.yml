@@ -4,8 +4,12 @@
     value: '262144'
     state: present
   become: true
+  register: configure_vm_max_map_count
+
+# - debug: var=configure_vm_max_map_count
 
 - name: Reboot the machine (Wait for 5 min)
+  when: configure_vm_max_map_count.changed
   become: true    
   reboot:
     reboot_timeout: 300

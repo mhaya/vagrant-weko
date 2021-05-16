@@ -11,7 +11,7 @@
     version: master 
   register: gitclone
 
-- debug: var=gitclone
+#- debug: var=gitclone
 
 - name: check WEKO3 build
   shell: |
@@ -20,7 +20,7 @@
     chdir: /home/vagrant/weko
   register: weko3_build_check
 
-- debug: var=weko3_build_check
+#- debug: var=weko3_build_check
 
 - name: start WEKO3 build
   when: gitclone.changed or weko3_build_check.stdout!="weko_elasticsearch weko_nginx weko_web"  
@@ -29,11 +29,23 @@
   args:
     chdir: /home/vagrant/weko
   register: weko3_built
+  until: not weko3_built.failed
+  retries: 3
+  delay: 60
 
-#- debug: var=weko3_built
+# - debug: var=weko3_built
+
+- name: check WEKO3 containers
+  shell: |
+    docker-compose ps --services --filter "status=running" | sort|xargs 
+  args:
+    chdir: /home/vagrant/weko
+  register: weko3_containers_check
+
+#- debug: var=weko3_containers_check
 
 - name: start WEKO3 service 
-  when: weko3_built.changed
+  when: weko3_built.changed or weko3_containers_check.stdout!="elasticsearch flower nginx postgresql rabbitmq redis web" 
   shell: |
     docker-compose up -d
   args:
@@ -42,13 +54,27 @@
 
 # - debug: var=weko3_started
 
+- name: Wait 300 seconds for port 443
+  wait_for:
+    port: 443
+    delay: 30
+    host: 127.0.0.1
+  register: weko3_port_check
+  until: not weko3_port_check.failed
+  retries: 10
+  delay: 3
+
 - name: check WEKO3 service
   uri:
-    url: https://localhost/ping
-    return_content: yes
+    url: https://127.0.0.1/ping
+    method: GET
+    return_content: no
     validate_certs: no
-    status_code: [500,502,200]
+    status_code: [502, 200]
   register: weko3_api_result
+  until: not weko3_api_result.failed
+  retries: 10
+  delay: 3
 
 - debug: var=weko3_api_result
 

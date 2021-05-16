@@ -1,21 +1,19 @@
 - name: install base packages
-  yum:
+  apt:
     name: "{{ packages }}"
   vars:
     packages:
-      - epel-release
-      - python-devel
-      - openssl-devel
+      - python3-dev
+      - libssl-dev
       - gcc
   become: true
 
-- name: install python-pip
-  yum:
+- name: install pip
+  apt:
     name: "{{ packages }}"
   vars:
     packages:
-      - python-pip
-    enablerepo: epel
+      - pip
   become: true
 
 - name: update pip 

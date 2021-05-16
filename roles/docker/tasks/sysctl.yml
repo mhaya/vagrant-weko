@@ -4,3 +4,8 @@
     value: '262144'
     state: present
   become: true
+
+- name: Reboot the machine (Wait for 5 min)
+  become: true    
+  reboot:
+    reboot_timeout: 300

@@ -1,23 +1,14 @@
-- name: install libselinux-python
-  yum: name=libselinux-python state=installed
+- name: Update repositories cache
+  become: yes
+  apt: update_cache=yes
 
-- name: disable selinux
-  selinux: state=disabled
-  become: true
-  register: selinux
+- name: Install build-essential
+  become: yes
+  apt: name=build-essential state=present
 
-
-- name: reboot machine
-  shell: "sleep 2 && reboot"
-  async: 1
-  poll: 0
-  when: selinux.reboot_required
-  become: True
-
-- name: wait for restarting machine 
-  local_action: wait_for host={{ inventory_hostname }} port={{ ansible_ssh_port }} delay=30 timeout=600
-  when: selinux.reboot_required
-  become: False
+- name: Install the libselinux-python package
+  become: yes
+  apt: name=python3-selinux state=present
 
 -
 

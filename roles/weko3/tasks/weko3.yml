@@ -1,22 +1,30 @@
 - name: directory check
   stat:
-    path: /vagrant/weko
+    path: /home/vagrant/weko
   register: d
 
 - name: check out WEKO3
   when: not d.stat.exists
   git:
     repo: 'https://github.com/RCOSDP/weko.git'
-    dest: /vagrant/weko
-    version: develop
+    dest: /home/vagrant/weko
+    version: master 
   register: gitclone
 
-#- debug: var=gitclone
+- debug: var=gitclone
+
+- name: check WEKO3 build
+  shell: |
+    docker images weko* | grep -v REPOSITORY |awk '{print $1}'|sort|xargs 
+  args:
+    chdir: /home/vagrant/weko
+  register: weko3_build_check
+
+- debug: var=weko3_build_check
 
 - name: start WEKO3 build
-  when: gitclone.changed  
+  when: gitclone.changed or weko3_build_check.stdout!="weko_elasticsearch weko_nginx weko_web"  
   shell: |
-    cd /vagrant/weko/;
     docker-compose build
   args:
     chdir: /home/vagrant/weko
@@ -25,24 +33,24 @@
 #- debug: var=weko3_built
 
 - name: start WEKO3 service 
+  when: weko3_built.changed
   shell: |
-    cd /vagrant/weko;
     docker-compose up -d
   args:
     chdir: /home/vagrant/weko
   register: weko3_started
 
-#- debug: var=weko3_started
+# - debug: var=weko3_started
 
 - name: check WEKO3 service
   uri:
-    url: https://localhost/
+    url: https://localhost/ping
     return_content: yes
     validate_certs: no
-    status_code: [502,200]
+    status_code: [500,502,200]
   register: weko3_api_result
 
-#- debug: var=weko3_api_result.status
+- debug: var=weko3_api_result
 
 - name: init WEKO3
   when: weko3_api_result.status == 502
@@ -52,9 +60,9 @@
     docker-compose exec postgresql psql -U invenio invenio  -f /tmp/item_type.sql
     docker-compose exec web invenio workflow init action_status,Action
   args:
-    chdir: /vagrant/weko
+    chdir: /home/vagrant/weko
   register: init_weko3
 
-- debug: var=init_weko3  
+#- debug: var=init_weko3  
 
 

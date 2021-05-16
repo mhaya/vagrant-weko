@@ -1,13 +1,11 @@
 - name: install base packages
-  yum:
+  apt:
     name: "{{ packages }}"
   vars:
     packages:
       - git
-      - kernel-devel
-      - kernel-headers
-      - gcc
-      - gcc-c++
+      - build-essential
+      - linux-headers-generic
   become: true
 
 

@@ -76,7 +76,7 @@
   retries: 10
   delay: 3
 
-- debug: var=weko3_api_result
+# - debug: var=weko3_api_result
 
 - name: init WEKO3
   when: weko3_api_result.status == 502

@@ -1,0 +1,67 @@
+- name: Set sysctl
+  become: yes
+  sysctl:
+    name: net.bridge.bridge-nf-call-iptables
+    value: "1"
+    sysctl_set: yes
+    sysctl_file: /etc/sysctl.conf
+    state: present
+    reload: yes
+
+#  - name: Add GlusterFS Repository
+#    apt_repository:
+#      repo: ppa:gluster/glusterfs-3.12
+
+- name: Install GlusterFS
+  become: yes
+  apt:
+    name: glusterfs-client
+    state: present
+    update_cache: yes
+
+- name: Install conntrack
+  become: yes
+  apt:
+    name: conntrack
+    state: present
+    update_cache: yes
+
+
+# https://storage.googleapis.com/kubernetes-release/release/stable.txt
+- name: download kubectl
+  become: yes
+  get_url:
+    url: https://storage.googleapis.com/kubernetes-release/release/v1.21.1/bin/linux/amd64/kubectl
+    dest: /usr/local/bin/
+    mode: 0755
+    owner: vagrant
+    group: vagrant
+
+- name: download Minikube
+  get_url:
+    url: https://storage.googleapis.com/minikube/releases/latest/minikube_latest_amd64.deb
+    dest: /tmp/
+
+- name: install Minikube
+  become: true
+  apt:
+    deb: /tmp/minikube_latest_amd64.deb
+
+- name: start Minikube
+  command: /usr/bin/minikube start
+
+- name: download Helm
+  become: true
+  get_url:
+    url: https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3
+    dest: ./get_helm.sh
+    mode: 0700
+    owner: vagrant
+    group: vagrant
+
+- name: install Helm
+  command: ./get_helm.sh
+
+
+# sudo mount -t vboxsf -o uid=1000,gid=1000 vagrant /vagrant
+

@@ -4,8 +4,7 @@
     - role: selinux-disabler
     - role: sysctl
     - role: docker
-    - role: python
-    - role: weko3
+    - role: minikube 
 
 
 

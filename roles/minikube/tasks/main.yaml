@@ -8,9 +8,9 @@
     state: present
     reload: yes
 
-#  - name: Add GlusterFS Repository
-#    apt_repository:
-#      repo: ppa:gluster/glusterfs-3.12
+#- name: Add GlusterFS Repository
+#  apt_repository:
+#    repo: ppa:gluster/glusterfs-3.12
 
 - name: Install GlusterFS
   become: yes
@@ -43,15 +43,24 @@
     dest: /tmp/
 
 - name: install Minikube
-  become: true
+  become: yes
   apt:
     deb: /tmp/minikube_latest_amd64.deb
 
 - name: start Minikube
-  command: /usr/bin/minikube start
+  command: /usr/bin/minikube start --driver=docker
+  args:
+    chdir: /home/vagrant      
+
+## Wait start containers
+#- name: waiting
+#  command: sleep 60
+
+
+
 
 - name: download Helm
-  become: true
+  become: yes 
   get_url:
     url: https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3
     dest: ./get_helm.sh
@@ -60,8 +69,13 @@
     group: vagrant
 
 - name: install Helm
+  become: yes 
   command: ./get_helm.sh
 
+- name: mount
+  become: yes 
+  command: mount -t vboxsf -o uid=1000,gid=1000 vagrant /vagrant
 
-# sudo mount -t vboxsf -o uid=1000,gid=1000 vagrant /vagrant
 
+- name: install ingress
+  command: /usr/bin/minikube addons enable ingress

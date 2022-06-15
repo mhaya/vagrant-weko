@@ -1,5 +1,42 @@
 Vagrant.configure("2") do |config|
   config.vm.box = "bento/ubuntu-20.04"
+
+  module OS
+    def OS.windows?
+      Vagrant::Util::Platform.windows?
+    end
+  
+    def OS.mac?
+      (/darwin/ =~ Vagrant::Util::Platform.platform) != nil
+    end
+  
+    def OS.unix?
+      !Vagrant::Util::Platform.platform
+    end
+  
+    def OS.linux?
+      OS.unix? and not OS.mac?
+    end
+  end
+
+  $install_script = <<-SHELL_SCRIPT
+    echo "vm.max_map_count = 262144"|sudo tee -a /etc/sysctl.conf
+    sudo sysctl vm.max_map_count=262144
+    sudo apt-get update
+    sudo apt-get install -y apt-transport-https ca-certificates curl gnupg-agent software-properties-common
+    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+    sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+    sudo apt-get update
+    sudo apt-get install -y docker-ce docker-ce-cli containerd.io
+    sudo usermod -aG docker $USER
+    sudo systemctl start docker
+    sudo systemctl enable docker
+    exec $SHELL -l
+    sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+    sudo chmod +x /usr/local/bin/docker-compose
+    sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+    SHELL_SCRIPT
+  
   config.vm.network "private_network", ip: "192.168.10.13", virtualbox__intnet: "intnet"
   #config.vm.hostname = "weko3.example.org"
   config.disksize.size = "200GB"
@@ -19,7 +56,10 @@ Vagrant.configure("2") do |config|
     vb.memory = "8192"
   end
 
-  config.vm.provision "ansible" do |ansible|
+  if OS.windows?
+    weko3_a.vm.provision "shell", inline: $install_script
+  else
+    config.vm.provision "ansible" do |ansible|
     ansible.playbook = "../site.yml"
     ansible.inventory_path = "hosts"
     ansible.limit = 'all'

@@ -60,6 +60,8 @@ Vagrant.configure("2") do |config|
   
     weko3_a.vm.provider "virtualbox" do |vb|
       vb.memory = "6148"
+      vb.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
+      vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
     end
 
     if OS.windows?
@@ -98,6 +100,8 @@ Vagrant.configure("2") do |config|
 
     weko3_b.vm.provider "virtualbox" do |vb|
       vb.memory = "6148"
+      vb.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
+      vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
     end
 
 

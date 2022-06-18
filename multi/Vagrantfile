@@ -31,7 +31,6 @@ Vagrant.configure("2") do |config|
     sudo usermod -aG docker $USER
     sudo systemctl start docker
     sudo systemctl enable docker
-    exec $SHELL -l
     sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
     sudo chmod +x /usr/local/bin/docker-compose
     sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
@@ -65,7 +64,7 @@ Vagrant.configure("2") do |config|
     end
 
     if OS.windows?
-      weko3_a.vm.provision "shell", inline: $install_script
+      weko3_a.vm.provision "shell", inline: $install_script, privileged: false
     else
       weko3_a.vm.provision "ansible" do |ansible|
         ansible.playbook = "../site.yml"
@@ -106,7 +105,7 @@ Vagrant.configure("2") do |config|
 
 
     if OS.windows?
-      weko3_b.vm.provision "shell", inline: $install_script
+      weko3_b.vm.provision "shell", inline: $install_script, privileged: false
     else
 
       weko3_b.vm.provision "ansible" do |ansible|
